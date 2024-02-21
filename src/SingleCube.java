@@ -11,13 +11,13 @@ public class SingleCube {
 
     public String[][] create() {
 
-        String x1 = String.valueOf(this.firstInt / 10);
-        String x2 = String.valueOf(this.firstInt % 10);
-        String y1 = String.valueOf(this.secondInt / 10);
-        String y2 = String.valueOf(this.secondInt % 10);
+        String a1 = String.valueOf(this.firstInt / 10);
+        String a2 = String.valueOf(this.firstInt % 10);
+        String b1 = String.valueOf(this.secondInt / 10);
+        String b2 = String.valueOf(this.secondInt % 10);
 
-        String[][] cube = { {"+","+","+","+","+"},{"+"," ",y1," ","+"},{"+",x1," ",x2,"+"},
-                {"+"," ",y2," ","+"},{"+","+","+","+","+"} };
+        String[][] cube = { {"+","+","+","+","+"},{"+"," ",b1," ","+"},{"+",a1," ",a2,"+"},
+                {"+"," ",b2," ","+"},{"+","+","+","+","+"} };
 
         return cube;
     }

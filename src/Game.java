@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import enigma.console.TextAttributes;
 import java.awt.Color;
+import java.util.Random;
 
 public class Game {
    public static enigma.console.Console cn = Enigma.getConsole("Mouse and Keyboard");
@@ -18,139 +19,190 @@ public class Game {
    public int rkey;    // key   (for press/release)
    // ----------------------------------------------------
 
-   static void write(String str, enigma.console.Console cn){
+   int rmcX = 2; int rmcY = 2;
+
+   int pieceX = 28; int pieceY = 2;
+
+   static Random random = new Random();
+
+   static void write(String str){
       cn.getTextWindow().output(str);
    }
 
-   static void setCursor(int x, int y, enigma.console.Console cn) {
+   static void setCursor(int x, int y) {
       cn.getTextWindow().setCursorPosition(x,y);
    }
 
-   static void createOneCube() {
-      SingleCube singleCube = new SingleCube(35,42);
-      int cubeCX = 25;
-      int cubeCY = 20;
+   static void createOneCube(int cubeCX, int cubeCY) {
+      SingleCube singleCube = new SingleCube(random.nextInt(75), random.nextInt(75));
+
       String[][] oneCube = singleCube.create();
 
       for(int i = 0; i< oneCube.length;i++){
-         setCursor(cubeCX,cubeCY, cn);
+         setCursor(cubeCX,cubeCY);
          for (int j = 0; j<oneCube.length;j++) {
-            write(oneCube[i][j], cn);
+            write(oneCube[i][j]);
          }
          cubeCY++;
       }
    }
 
-   static void createTwoCube() {
-      DoubleCube doubleCube = new DoubleCube(45,27,35,55);
+   static void createTwoCube(int cubeCX, int cubeCY) {
+      DoubleCube doubleCube = new DoubleCube(random.nextInt(75)+6, random.nextInt(75)+6,random.nextInt(75)+6, random.nextInt(75)+6);
       String[][] twoCube = doubleCube.create();
 
-      int cubeCX = 25;
-      int cubeCY = 5;
       for(int i = 0; i< twoCube.length;i++){
-         setCursor(cubeCX,cubeCY, cn);
+         setCursor(cubeCX,cubeCY);
          for (int j = 0; j< twoCube.length;j++) {
-            write(twoCube[i][j], cn);
+            write(twoCube[i][j]);
          }
          cubeCY++;
       }
    }
 
    static void createThreeCube(int cubeCX, int cubeCY) {
-      TribleCube tribleCube = new TribleCube(10,11,12,13,14,15);
+      TribleCube tribleCube = new TribleCube(random.nextInt(75)+12, random.nextInt(75)+12,random.nextInt(75)+12, random.nextInt(75)+12,random.nextInt(75)+12,random.nextInt(75)+12);
       String[][] threeCube = tribleCube.create();
 
       for(int i = 0; i< threeCube.length;i++){
-         setCursor(cubeCX,cubeCY, cn);
+         setCursor(cubeCX,cubeCY);
          for (int j = 0; j< threeCube.length;j++) {
-            write(threeCube[i][j], cn);
+            write(threeCube[i][j]);
          }
          cubeCY++;
       }
+      setCursor(cubeCX+14, cubeCY-11);
+      String firstRow = String.valueOf(tribleCube.getFirstRow());
+      write(firstRow);
+
+      setCursor(cubeCX+14, cubeCY-7);
+      String secondRow = String.valueOf(tribleCube.getSecondRow());
+      write(secondRow);
+
+      setCursor(cubeCX+14, cubeCY-3);
+      String thirdRow = String.valueOf(tribleCube.getThirdRow());
+      write(thirdRow);
    }
 
    static void createFourCube(int cubeCX, int cubeCY) {
-      QuadrupleCube quadrupleCube = new QuadrupleCube(14,17,19,21,23,25,27,29);
+      QuadrupleCube quadrupleCube = new QuadrupleCube(random.nextInt(75)+24, random.nextInt(75)+24,random.nextInt(75)+24,random.nextInt(75)+24,random.nextInt(75)+24, random.nextInt(75)+24,random.nextInt(75)+24,random.nextInt(75)+24);
       String[][] fourCube = quadrupleCube.create();
       for(int i = 0; i< fourCube.length;i++){
-         setCursor(cubeCX,cubeCY, cn);
+         setCursor(cubeCX,cubeCY);
          for (int j = 0; j< fourCube.length;j++) {
-            write(fourCube[i][j], cn);
+            write(fourCube[i][j]);
          }
          cubeCY++;
       }
+      setCursor(cubeCX+14, cubeCY-11);
+      String firstRow = String.valueOf(quadrupleCube.getFirstRow());
+      write(firstRow);
+
+      setCursor(cubeCX+14, cubeCY-7);
+      String secondRow = String.valueOf(quadrupleCube.getSecondRow());
+      write(secondRow);
+
+      setCursor(cubeCX+14, cubeCY-3);
+      String thirdRow = String.valueOf(quadrupleCube.getThirdRow());
+      write(thirdRow);
+   }
+
+   static void robotTemplate(){
+      setCursor(10,2);
+      write(".....");
+      setCursor(10,3);
+      write(".   .");
+      setCursor(10,4);
+      write(".   .");
+      setCursor(10,5);
+      write(".   .\n");
+
+      setCursor(2, 6);
+      write(".....................");
+      setCursor(2, 7);
+      write(".   .   .   .   .   .");
+      setCursor(2, 8);
+      write(".   .   .   .   .   .");
+      setCursor(2, 9);
+      write(".   .   .   .   .   .");
+      setCursor(2, 10);
+      write(".....................");
+
+      setCursor(6,11);
+      write(".   .   .   .");
+      setCursor(6,12);
+      write(".   .   .   .");
+      setCursor(6,13);
+      write(".   .   .   .");
+      setCursor(6,14);
+      write(".............");
+      setCursor(6,15);
+      write(".   .   .   .");
+      setCursor(6,16);
+      write(".   .   .   .");
+      setCursor(6,17);
+      write(".   .   .   .");
+      setCursor(6,18);
+      write(".............");
+      setCursor(6,19);
+      write(".   .   .   .");
+      setCursor(6,20);
+      write(".   .   .   .");
+      setCursor(6,21);
+      write(".   .   .   .");
+      setCursor(6,22);
+      write(".....   .....");
    }
    Game() throws Exception {
 
-      setCursor(0,0,cn);
+      setCursor(0,0);
       write(
               "+-1---2---3---4---5---> X\n" +
-                      "|\n" + "1\n" + "+\n" + "+\n"+ "+\n" + "2\n" + "+\n" + "+\n" + "+\n" + "3\n" + "+\n" + "+\n" + "+\n" + "+\n" + "4\n" + "+\n" + "+\n" + ".\n" + "5\n" + ".\n" + ".\n" + "v\n" + "\n" + "Y", cn);
+                      "|\n" + "1\n" + "+\n" + "+\n"+ "+\n" + "2\n" + "+\n" + "+\n" + "+\n" + "3\n" + "+\n" + "+\n" + "+\n" + "+\n" + "4\n" + "+\n" + "+\n" + ".\n" + "5\n" + ".\n" + ".\n" + "v\n" + "\n" + "Y");
 
-      setCursor(10,2, cn);
-      write(".....",cn);
-      setCursor(10,3,cn);
-      write(".   .",cn);
-      setCursor(10,4,cn);
-      write(".   .", cn);
-      setCursor(10,5,cn);
-      write(".   .\n", cn);
+      robotTemplate();
 
-      setCursor(2, 6, cn);
-      write(".....................", cn);
-      setCursor(2, 7, cn);
-      write(".   .   .   .   .   .", cn);
-      setCursor(2, 8, cn);
-      write(".   .   .   .   .   .", cn);
-      setCursor(2, 9, cn);
-      write(".   .   .   .   .   .", cn);
-      setCursor(2, 10, cn);
-      write(".....................", cn);
-
-      setCursor(6,11,cn);
-      write(".   .   .   .", cn);
-      setCursor(6,12,cn);
-      write(".   .   .   .", cn);
-      setCursor(6,13,cn);
-      write(".   .   .   .", cn);
-      setCursor(6,14,cn);
-      write(".............", cn);
-      setCursor(6,15,cn);
-      write(".   .   .   .", cn);
-      setCursor(6,16,cn);
-      write(".   .   .   .", cn);
-      setCursor(6,17,cn);
-      write(".   .   .   .", cn);
-      setCursor(6,18,cn);
-      write(".............", cn);
-      setCursor(6,19,cn);
-      write(".   .   .   .", cn);
-      setCursor(6,20,cn);
-      write(".   .   .   .", cn);
-      setCursor(6,21,cn);
-      write(".   .   .   .", cn);
-      setCursor(6,22,cn);
-      write(".....   .....", cn);
+      setCursor(0,27);
+      write("Current piece (#)");
+      setCursor(2,28); write("X:1");
+      setCursor(8,28); write("Y:1");
+      setCursor(0,29); write("Used pieces (=/-)");
 
 
-      setCursor(29,3,cn);
-      write("01",cn);
+      //Küpleri oluşturma
+      setCursor(29,3);
+      write("01");
       createFourCube(31,3);
 
-      setCursor(47,3, cn);
-      write("02",cn);
+      setCursor(47,3);
+      write("02");
       createFourCube(49,3);
 
-      setCursor(65,3, cn);
-      write("03",cn);
+      setCursor(65,3);
+      write("03");
       createFourCube(67,3);
 
-      setCursor(83,3, cn);
-      write("04",cn);
-      createFourCube(85,3);
+
+      setCursor(29,16);
+      write("05");
+      createThreeCube(31,16);
+
+
+      setCursor(47,16);
+      write("06");
+      createThreeCube(49,16);
+
+      setCursor(65,16);
+      write("07");
+      createThreeCube(67,16);
 
 
 
+      setCursor(pieceX,pieceY); write("###");
+      setCursor(pieceX,pieceY+1); write("#");
+      setCursor(pieceX,pieceY+2); write("###");
+
+      setCursor(rmcX,rmcY); write("#");
       // --- Contructor
                  
       // ------ Standard code for mouse and keyboard ------ Do not change
@@ -175,11 +227,75 @@ public class Game {
             if(keypr==0) {
                keypr=1;
 
-               if(e.getKeyCode()== 68) {
-                  //x += 10;
-                  //cn.getTextWindow().setCursorPosition(x,y);
-                  //cn.getTextWindow().output("*");
+               // Yer Seçimi
+               if(e.getKeyCode()== 'D' && (rmcX-2)/4+1 < 5) {
+                  setCursor(rmcX, rmcY); write(" ");
+                  rmcX += 4;
+                  setCursor(rmcX, rmcY); write("#");
                }
+               else if(e.getKeyCode()== 'A' && (rmcX-2)/4+1 > 1) {
+                  setCursor(rmcX, rmcY); write(" ");
+                  rmcX -= 4;
+                  setCursor(rmcX, rmcY); write("#");
+               }
+               else if(e.getKeyCode()== 'W' && (rmcY-2)/4+1 > 1) {
+                  setCursor(rmcX, rmcY); write(" ");
+                  rmcY -= 4;
+                  setCursor(rmcX, rmcY); write("#");
+               }
+               else if(e.getKeyCode()== 'S' && (rmcY-2)/4+1 < 5) {
+                  setCursor(rmcX, rmcY); write(" ");
+                  rmcY += 4;
+                  setCursor(rmcX, rmcY); write("#");
+               }
+               
+               //Küp Seçimi
+               //başlangıç koordinatı 27ye 1
+               //sol ok -> 37
+               //yukarı ok -> 38
+               //Sağ ok -> 39
+               //Aşağı ok -> 40
+               else if (e.getKeyCode() == 37 && pieceX>28) {
+                  setCursor(pieceX,pieceY); write("   ");
+                  setCursor(pieceX,pieceY+1); write(" ");
+                  setCursor(pieceX,pieceY+2); write("   ");
+                  pieceX -= 18;
+                  setCursor(pieceX,pieceY); write("###");
+                  setCursor(pieceX,pieceY+1); write("#");
+                  setCursor(pieceX,pieceY+2); write("###");
+               }
+               else if (e.getKeyCode() == 39 && pieceX < 60) {
+                  setCursor(pieceX,pieceY); write("   ");
+                  setCursor(pieceX,pieceY+1); write(" ");
+                  setCursor(pieceX,pieceY+2); write("   ");
+                  pieceX += 18;
+                  setCursor(pieceX,pieceY); write("###");
+                  setCursor(pieceX,pieceY+1); write("#");
+                  setCursor(pieceX,pieceY+2); write("###");
+               }
+               else if (e.getKeyCode() == 38 && pieceY>2) {
+                  setCursor(pieceX,pieceY); write("   ");
+                  setCursor(pieceX,pieceY+1); write(" ");
+                  setCursor(pieceX,pieceY+2); write("   ");
+                  pieceY -= 13;
+                  setCursor(pieceX,pieceY); write("###");
+                  setCursor(pieceX,pieceY+1); write("#");
+                  setCursor(pieceX,pieceY+2); write("###");
+               }
+               else if (e.getKeyCode() == 40 && pieceY<13) {
+                  setCursor(pieceX,pieceY); write("   ");
+                  setCursor(pieceX,pieceY+1); write(" ");
+                  setCursor(pieceX,pieceY+2); write("   ");
+                  pieceY += 13;
+                  setCursor(pieceX,pieceY); write("###");
+                  setCursor(pieceX,pieceY+1); write("#");
+                  setCursor(pieceX,pieceY+2); write("###");
+               }
+
+               String positionX = String.valueOf((rmcX-2)/4+1);
+               String positionY = String.valueOf((rmcY-2)/4+1);
+               setCursor(4,28); write(positionX);
+               setCursor(10,28); write(positionY);
             }
          }
          public void keyReleased(KeyEvent e) {}
