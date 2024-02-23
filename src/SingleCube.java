@@ -4,6 +4,15 @@ public class SingleCube {
 
     int firstInt;
     int secondInt;
+
+    double firstColumn;
+    double firstRow;
+    public double getFirstColumn(){
+        return this.firstColumn;
+    }
+    public double getFirstRow(){
+        return this.firstRow;
+    }
     public SingleCube(int firstInt, int secondInt) {
         this.firstInt = firstInt;
         this.secondInt = secondInt;
@@ -19,6 +28,8 @@ public class SingleCube {
         String[][] cube = { {"+","+","+","+","+"},{"+"," ",b1," ","+"},{"+",a1," ",a2,"+"},
                 {"+"," ",b2," ","+"},{"+","+","+","+","+"} };
 
+        this.firstRow = this.firstInt;
+        this.firstColumn = this.secondInt;
         return cube;
     }
 }

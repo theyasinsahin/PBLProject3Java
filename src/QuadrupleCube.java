@@ -32,6 +32,10 @@ public class QuadrupleCube {
     }public double getThirdRow(){
         return this.thirdRow;
     }
+
+    public String getA1(){
+        return String.valueOf(firstInt/10);
+    }
     public QuadrupleCube(int firstInt, int secondInt, int thirdInt, int fourthInt, int fifthInt, int sixthInt, int seventhInt, int eighthInt) {
         this.firstInt = firstInt;
         this.secondInt = secondInt;

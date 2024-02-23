@@ -8,24 +8,19 @@ public class DoubleCube {
 
     private double firstColumn;
     private double secondColumn;
-    private double thirdColumn;
     private double firstRow;
     private double secondRow;
-    private double thirdRow;
 
     public double getFirstColumn(){
         return this.firstColumn;
     }
     public double getSecondColumn(){
         return this.secondColumn;
-    }public double getThirdColumn(){
-        return this.thirdColumn;
-    }public double getFirstRow(){
+    }
+    public double getFirstRow(){
         return this.firstRow;
-    }public double getSecondRow(){
+    }public double getSecondRow() {
         return this.secondRow;
-    }public double getThirdRow(){
-        return this.thirdRow;
     }
     public DoubleCube(int firstInt, int secondInt, int thirdInt, int fourthInt) {
         this.firstInt = firstInt;
@@ -54,6 +49,10 @@ public class DoubleCube {
                 {"."," "," "," ","."," "," "," ","."},
                 {".",".",".",".",".",".",".",".","."}
         };
+        this.firstRow = (this.firstInt+this.thirdInt) /2;
+        this.secondRow = 0;
+        this.firstColumn = this.secondColumn;
+        this.secondColumn = this.fourthInt;
 
         return cube;
     }

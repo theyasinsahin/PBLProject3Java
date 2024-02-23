@@ -8,7 +8,7 @@ import java.awt.Color;
 import java.util.Random;
 
 public class Game {
-   public static enigma.console.Console cn = Enigma.getConsole("Mouse and Keyboard");
+   public static enigma.console.Console cn = Enigma.getConsole("Mouse and Keyboard", 300, 50);
    public TextMouseListener tmlis; 
    public KeyListener klis; 
 
@@ -33,79 +33,33 @@ public class Game {
       cn.getTextWindow().setCursorPosition(x,y);
    }
 
-   static void createOneCube(int cubeCX, int cubeCY) {
-      SingleCube singleCube = new SingleCube(random.nextInt(75), random.nextInt(75));
+   SingleCube singleCube1 = new SingleCube(random.nextInt(75), random.nextInt(75));
+   SingleCube singleCube2 = new SingleCube(random.nextInt(75), random.nextInt(75));
+   SingleCube singleCube3 = new SingleCube(random.nextInt(75), random.nextInt(75));
+   SingleCube singleCube4 = new SingleCube(random.nextInt(75), random.nextInt(75));
+   SingleCube singleCube5 = new SingleCube(random.nextInt(75), random.nextInt(75));
+   SingleCube singleCube6 = new SingleCube(random.nextInt(75), random.nextInt(75));
+   SingleCube singleCube7 = new SingleCube(random.nextInt(75), random.nextInt(75));
 
-      String[][] oneCube = singleCube.create();
 
-      for(int i = 0; i< oneCube.length;i++){
-         setCursor(cubeCX,cubeCY);
-         for (int j = 0; j<oneCube.length;j++) {
-            write(oneCube[i][j]);
-         }
-         cubeCY++;
-      }
-   }
+   DoubleCube doubleCube1 = new DoubleCube(random.nextInt(75)+6, random.nextInt(75)+6,random.nextInt(75)+6, random.nextInt(75)+6);
+   DoubleCube doubleCube2 = new DoubleCube(random.nextInt(75)+6, random.nextInt(75)+6,random.nextInt(75)+6, random.nextInt(75)+6);
+   DoubleCube doubleCube3 = new DoubleCube(random.nextInt(75)+6, random.nextInt(75)+6,random.nextInt(75)+6, random.nextInt(75)+6);
+   DoubleCube doubleCube4 = new DoubleCube(random.nextInt(75)+6, random.nextInt(75)+6,random.nextInt(75)+6, random.nextInt(75)+6);
+   DoubleCube doubleCube5 = new DoubleCube(random.nextInt(75)+6, random.nextInt(75)+6,random.nextInt(75)+6, random.nextInt(75)+6);
 
-   static void createTwoCube(int cubeCX, int cubeCY) {
-      DoubleCube doubleCube = new DoubleCube(random.nextInt(75)+6, random.nextInt(75)+6,random.nextInt(75)+6, random.nextInt(75)+6);
-      String[][] twoCube = doubleCube.create();
 
-      for(int i = 0; i< twoCube.length;i++){
-         setCursor(cubeCX,cubeCY);
-         for (int j = 0; j< twoCube.length;j++) {
-            write(twoCube[i][j]);
-         }
-         cubeCY++;
-      }
-   }
+   TribleCube tribleCube1 = new TribleCube(random.nextInt(75)+12, random.nextInt(75)+12,random.nextInt(75)+12, random.nextInt(75)+12,random.nextInt(75)+12,random.nextInt(75)+12);
+   TribleCube tribleCube2 = new TribleCube(random.nextInt(75)+12, random.nextInt(75)+12,random.nextInt(75)+12, random.nextInt(75)+12,random.nextInt(75)+12,random.nextInt(75)+12);
+   TribleCube tribleCube3 = new TribleCube(random.nextInt(75)+12, random.nextInt(75)+12,random.nextInt(75)+12, random.nextInt(75)+12,random.nextInt(75)+12,random.nextInt(75)+12);
+   TribleCube tribleCube4 = new TribleCube(random.nextInt(75)+12, random.nextInt(75)+12,random.nextInt(75)+12, random.nextInt(75)+12,random.nextInt(75)+12,random.nextInt(75)+12);
 
-   static void createThreeCube(int cubeCX, int cubeCY) {
-      TribleCube tribleCube = new TribleCube(random.nextInt(75)+12, random.nextInt(75)+12,random.nextInt(75)+12, random.nextInt(75)+12,random.nextInt(75)+12,random.nextInt(75)+12);
-      String[][] threeCube = tribleCube.create();
 
-      for(int i = 0; i< threeCube.length;i++){
-         setCursor(cubeCX,cubeCY);
-         for (int j = 0; j< threeCube.length;j++) {
-            write(threeCube[i][j]);
-         }
-         cubeCY++;
-      }
-      setCursor(cubeCX+14, cubeCY-11);
-      String firstRow = String.valueOf(tribleCube.getFirstRow());
-      write(firstRow);
+   QuadrupleCube quadrupleCube1 = new QuadrupleCube(random.nextInt(75)+24, random.nextInt(75)+24,random.nextInt(75)+24,random.nextInt(75)+24,random.nextInt(75)+24, random.nextInt(75)+24,random.nextInt(75)+24,random.nextInt(75)+24);
+   QuadrupleCube quadrupleCube2 = new QuadrupleCube(random.nextInt(75)+24, random.nextInt(75)+24,random.nextInt(75)+24,random.nextInt(75)+24,random.nextInt(75)+24, random.nextInt(75)+24,random.nextInt(75)+24,random.nextInt(75)+24);
+   QuadrupleCube quadrupleCube3 = new QuadrupleCube(random.nextInt(75)+24, random.nextInt(75)+24,random.nextInt(75)+24,random.nextInt(75)+24,random.nextInt(75)+24, random.nextInt(75)+24,random.nextInt(75)+24,random.nextInt(75)+24);
+   QuadrupleCube quadrupleCube4 = new QuadrupleCube(random.nextInt(75)+24, random.nextInt(75)+24,random.nextInt(75)+24,random.nextInt(75)+24,random.nextInt(75)+24, random.nextInt(75)+24,random.nextInt(75)+24,random.nextInt(75)+24);
 
-      setCursor(cubeCX+14, cubeCY-7);
-      String secondRow = String.valueOf(tribleCube.getSecondRow());
-      write(secondRow);
-
-      setCursor(cubeCX+14, cubeCY-3);
-      String thirdRow = String.valueOf(tribleCube.getThirdRow());
-      write(thirdRow);
-   }
-
-   static void createFourCube(int cubeCX, int cubeCY) {
-      QuadrupleCube quadrupleCube = new QuadrupleCube(random.nextInt(75)+24, random.nextInt(75)+24,random.nextInt(75)+24,random.nextInt(75)+24,random.nextInt(75)+24, random.nextInt(75)+24,random.nextInt(75)+24,random.nextInt(75)+24);
-      String[][] fourCube = quadrupleCube.create();
-      for(int i = 0; i< fourCube.length;i++){
-         setCursor(cubeCX,cubeCY);
-         for (int j = 0; j< fourCube.length;j++) {
-            write(fourCube[i][j]);
-         }
-         cubeCY++;
-      }
-      setCursor(cubeCX+14, cubeCY-11);
-      String firstRow = String.valueOf(quadrupleCube.getFirstRow());
-      write(firstRow);
-
-      setCursor(cubeCX+14, cubeCY-7);
-      String secondRow = String.valueOf(quadrupleCube.getSecondRow());
-      write(secondRow);
-
-      setCursor(cubeCX+14, cubeCY-3);
-      String thirdRow = String.valueOf(quadrupleCube.getThirdRow());
-      write(thirdRow);
-   }
 
    static void robotTemplate(){
       setCursor(10,2);
@@ -169,32 +123,92 @@ public class Game {
       setCursor(0,29); write("Used pieces (=/-)");
 
 
-      //Küpleri oluşturma
+      //KÜPLERİ OLUŞTURMA
+
+      //Dörtlü Küpler
       setCursor(29,3);
       write("01");
-      createFourCube(31,3);
+      CreateCubes.createFourCube(31,3, quadrupleCube1);
 
-      setCursor(47,3);
+      setCursor(49,3);
       write("02");
-      createFourCube(49,3);
+      CreateCubes.createFourCube(51,3, quadrupleCube2);
 
-      setCursor(65,3);
+      setCursor(69,3);
       write("03");
-      createFourCube(67,3);
+      CreateCubes.createFourCube(71,3, quadrupleCube3);
 
+      setCursor(89,3);
+      write("04");
+      CreateCubes.createFourCube(91,3, quadrupleCube4);
 
-      setCursor(29,16);
+      //Üçlü Küpler
+      setCursor(29,18);
       write("05");
-      createThreeCube(31,16);
+      CreateCubes.createThreeCube(31,18, tribleCube1);
 
 
-      setCursor(47,16);
+      setCursor(49,18);
       write("06");
-      createThreeCube(49,16);
+      CreateCubes.createThreeCube(51,18, tribleCube2);
 
-      setCursor(65,16);
+      setCursor(69,18);
       write("07");
-      createThreeCube(67,16);
+      CreateCubes.createThreeCube(71,18, tribleCube3);
+
+      setCursor(89,18);
+      write("08");
+      CreateCubes.createThreeCube(91,18, tribleCube4);
+
+      //İkili küpler
+      setCursor(29,33);
+      write("09");
+      CreateCubes.createTwoCube(31,33, doubleCube1);
+
+      setCursor(44,33);
+      write("10");
+      CreateCubes.createTwoCube(46,33, doubleCube2);
+
+      setCursor(59,33);
+      write("11");
+      CreateCubes.createTwoCube(61,33, doubleCube3);
+
+      setCursor(74,33);
+      write("12");
+      CreateCubes.createTwoCube(76,33, doubleCube4);
+
+      setCursor(89,33);
+      write("13");
+      CreateCubes.createTwoCube(91,33, doubleCube5);
+
+      //Tek küpler
+      setCursor(29,44);
+      write("14");
+      CreateCubes.createOneCube(31,44, singleCube1);
+
+      setCursor(39,44);
+      write("15");
+      CreateCubes.createOneCube(41,44, singleCube2);
+
+      setCursor(49,44);
+      write("16");
+      CreateCubes.createOneCube(51,44, singleCube3);
+
+      setCursor(59,44);
+      write("17");
+      CreateCubes.createOneCube(61,44, singleCube4);
+
+      setCursor(69,44);
+      write("18");
+      CreateCubes.createOneCube( 71,44, singleCube5);
+
+      setCursor(79,44);
+      write("19");
+      CreateCubes.createOneCube(81,44, singleCube6);
+
+      setCursor(89,44);
+      write("20");
+      CreateCubes.createOneCube(91,44, singleCube7);
 
 
 
@@ -259,7 +273,7 @@ public class Game {
                   setCursor(pieceX,pieceY); write("   ");
                   setCursor(pieceX,pieceY+1); write(" ");
                   setCursor(pieceX,pieceY+2); write("   ");
-                  pieceX -= 18;
+                  pieceX -= 20;
                   setCursor(pieceX,pieceY); write("###");
                   setCursor(pieceX,pieceY+1); write("#");
                   setCursor(pieceX,pieceY+2); write("###");
@@ -268,7 +282,7 @@ public class Game {
                   setCursor(pieceX,pieceY); write("   ");
                   setCursor(pieceX,pieceY+1); write(" ");
                   setCursor(pieceX,pieceY+2); write("   ");
-                  pieceX += 18;
+                  pieceX += 20;
                   setCursor(pieceX,pieceY); write("###");
                   setCursor(pieceX,pieceY+1); write("#");
                   setCursor(pieceX,pieceY+2); write("###");
@@ -277,7 +291,7 @@ public class Game {
                   setCursor(pieceX,pieceY); write("   ");
                   setCursor(pieceX,pieceY+1); write(" ");
                   setCursor(pieceX,pieceY+2); write("   ");
-                  pieceY -= 13;
+                  pieceY -= 15;
                   setCursor(pieceX,pieceY); write("###");
                   setCursor(pieceX,pieceY+1); write("#");
                   setCursor(pieceX,pieceY+2); write("###");
@@ -286,7 +300,7 @@ public class Game {
                   setCursor(pieceX,pieceY); write("   ");
                   setCursor(pieceX,pieceY+1); write(" ");
                   setCursor(pieceX,pieceY+2); write("   ");
-                  pieceY += 13;
+                  pieceY += 15;
                   setCursor(pieceX,pieceY); write("###");
                   setCursor(pieceX,pieceY+1); write("#");
                   setCursor(pieceX,pieceY+2); write("###");
