@@ -8,7 +8,7 @@ import java.awt.Color;
 import java.util.Random;
 
 public class Game {
-   public static enigma.console.Console cn = Enigma.getConsole("Mouse and Keyboard", 300, 50);
+   public static enigma.console.Console cn = Enigma.getConsole("Mouse and Keyboard", 150, 50);
    public TextMouseListener tmlis; 
    public KeyListener klis; 
 
@@ -117,7 +117,7 @@ public class Game {
       robotTemplate();
 
       setCursor(0,27);
-      write("Current piece (#)");
+      write("Current piece (#):");
       setCursor(2,28); write("X:1");
       setCursor(8,28); write("Y:1");
       setCursor(0,29); write("Used pieces (=/-)");
@@ -128,7 +128,7 @@ public class Game {
       //Dörtlü Küpler
       setCursor(29,3);
       write("01");
-      CreateCubes.createFourCube(31,3, quadrupleCube1);
+      String[][] fourCube1 = CreateCubes.createFourCube(31,3, quadrupleCube1);
 
       setCursor(49,3);
       write("02");
@@ -186,29 +186,29 @@ public class Game {
       write("14");
       CreateCubes.createOneCube(31,44, singleCube1);
 
-      setCursor(39,44);
+      setCursor(40,44);
       write("15");
-      CreateCubes.createOneCube(41,44, singleCube2);
+      CreateCubes.createOneCube(42,44, singleCube2);
 
-      setCursor(49,44);
+      setCursor(51,44);
       write("16");
-      CreateCubes.createOneCube(51,44, singleCube3);
+      CreateCubes.createOneCube(53,44, singleCube3);
 
-      setCursor(59,44);
+      setCursor(62,44);
       write("17");
-      CreateCubes.createOneCube(61,44, singleCube4);
+      CreateCubes.createOneCube(64,44, singleCube4);
 
-      setCursor(69,44);
+      setCursor(73,44);
       write("18");
-      CreateCubes.createOneCube( 71,44, singleCube5);
+      CreateCubes.createOneCube( 75,44, singleCube5);
 
-      setCursor(79,44);
+      setCursor(84,44);
       write("19");
-      CreateCubes.createOneCube(81,44, singleCube6);
+      CreateCubes.createOneCube(86,44, singleCube6);
 
-      setCursor(89,44);
+      setCursor(95,44);
       write("20");
-      CreateCubes.createOneCube(91,44, singleCube7);
+      CreateCubes.createOneCube(97,44, singleCube7);
 
 
 
@@ -244,21 +244,25 @@ public class Game {
                // Yer Seçimi
                if(e.getKeyCode()== 'D' && (rmcX-2)/4+1 < 5) {
                   setCursor(rmcX, rmcY); write(" ");
+                  robotTemplate();
                   rmcX += 4;
                   setCursor(rmcX, rmcY); write("#");
                }
                else if(e.getKeyCode()== 'A' && (rmcX-2)/4+1 > 1) {
                   setCursor(rmcX, rmcY); write(" ");
+                  robotTemplate();
                   rmcX -= 4;
                   setCursor(rmcX, rmcY); write("#");
                }
                else if(e.getKeyCode()== 'W' && (rmcY-2)/4+1 > 1) {
                   setCursor(rmcX, rmcY); write(" ");
+                  robotTemplate();
                   rmcY -= 4;
                   setCursor(rmcX, rmcY); write("#");
                }
                else if(e.getKeyCode()== 'S' && (rmcY-2)/4+1 < 5) {
                   setCursor(rmcX, rmcY); write(" ");
+                  robotTemplate();
                   rmcY += 4;
                   setCursor(rmcX, rmcY); write("#");
                }
@@ -269,6 +273,7 @@ public class Game {
                //yukarı ok -> 38
                //Sağ ok -> 39
                //Aşağı ok -> 40
+               //(19,27) current piece yazdır
                else if (e.getKeyCode() == 37 && pieceX>28) {
                   setCursor(pieceX,pieceY); write("   ");
                   setCursor(pieceX,pieceY+1); write(" ");
@@ -278,7 +283,7 @@ public class Game {
                   setCursor(pieceX,pieceY+1); write("#");
                   setCursor(pieceX,pieceY+2); write("###");
                }
-               else if (e.getKeyCode() == 39 && pieceX < 60) {
+               else if (e.getKeyCode() == 39 && pieceX < 70) {
                   setCursor(pieceX,pieceY); write("   ");
                   setCursor(pieceX,pieceY+1); write(" ");
                   setCursor(pieceX,pieceY+2); write("   ");
@@ -305,6 +310,66 @@ public class Game {
                   setCursor(pieceX,pieceY+1); write("#");
                   setCursor(pieceX,pieceY+2); write("###");
                }
+
+               setCursor(19,27);
+               switch (pieceX){
+                  case 28:
+                     switch (pieceY){
+                        case 2:
+                           write("1");
+                           break;
+                        case 17:
+                           write("5");
+                           break;
+                     }
+                     break;
+                  case 48:
+                     switch (pieceY){
+                        case 2:
+                           write("2");
+                           break;
+                        case 17:
+                           write("6");
+                           break;
+                     }
+                     break;
+                  case 68:
+                     switch (pieceY){
+                        case 2:
+                           write("3");
+                           break;
+                        case 17:
+                           write("7");
+                           break;
+                     }
+                     break;
+                  case 88:
+                     switch (pieceY){
+                        case 2:
+                           write("4");
+                           break;
+                        case 17:
+                           write("8");
+                           break;
+                     }
+               }
+
+
+
+               /////////Robot Üzerinde Parçaları Gösterme
+               /*
+               if(pieceX == 28 && pieceY == 2) {
+                  for(int i = 1; i<23;i++) {
+                     for(int j = 1; j<23;j++){
+                        setCursor(i,j);
+                        write(" ");
+                     }
+                  }
+                  robotTemplate();
+                  CreateCubes.showJustCube(rmcX,rmcY, fourCube1);
+               }
+               */
+
 
                String positionX = String.valueOf((rmcX-2)/4+1);
                String positionY = String.valueOf((rmcY-2)/4+1);

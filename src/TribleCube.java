@@ -75,7 +75,7 @@ public class TribleCube {
             this.firstColumn = this.secondInt;
             this.secondColumn = this.fourthInt;
             this.thirdColumn = this.sixthInt;
-            this.firstRow = (this.firstInt+this.thirdInt+this.fifthInt) / 3;
+            this.firstRow = (Double.valueOf(this.firstInt)+ Double.valueOf(this.thirdInt) + Double.valueOf(this.fifthInt)) / 3;
             this.secondRow = 0;
             this.thirdRow = 0;
         }
@@ -95,9 +95,9 @@ public class TribleCube {
                     {".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "."}
             };
             this.firstColumn = this.secondInt;
-            this.secondColumn = (this.fourthInt + this.sixthInt)/2;
+            this.secondColumn = (Double.valueOf(this.fourthInt) + Double.valueOf(this.sixthInt))/2;
             this.thirdColumn = 0;
-            this.firstRow = (this.firstInt+this.thirdInt) / 2;
+            this.firstRow = (Double.valueOf(this.firstInt) + Double.valueOf(this.thirdInt)) / 2;
             this.secondRow = this.fifthInt;
             this.thirdRow = 0;
         }

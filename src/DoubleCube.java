@@ -49,7 +49,7 @@ public class DoubleCube {
                 {"."," "," "," ","."," "," "," ","."},
                 {".",".",".",".",".",".",".",".","."}
         };
-        this.firstRow = (this.firstInt+this.thirdInt) /2;
+        this.firstRow = (Double.valueOf(this.firstInt) + Double.valueOf(this.thirdInt)) /2;
         this.secondRow = 0;
         this.firstColumn = this.secondColumn;
         this.secondColumn = this.fourthInt;

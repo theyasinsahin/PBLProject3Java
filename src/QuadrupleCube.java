@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.function.DoublePredicate;
 
 public class QuadrupleCube {
 
@@ -61,10 +62,10 @@ public class QuadrupleCube {
         String e2 = String.valueOf(this.fifthInt % 10);
         String f1 = String.valueOf(this.sixthInt / 10);
         String f2 = String.valueOf(this.sixthInt % 10);
-        String g1 = String.valueOf(this.fifthInt / 10);
-        String g2 = String.valueOf(this.fifthInt % 10);
-        String h1 = String.valueOf(this.sixthInt / 10);
-        String h2 = String.valueOf(this.sixthInt % 10);
+        String g1 = String.valueOf(this.seventhInt / 10);
+        String g2 = String.valueOf(this.seventhInt % 10);
+        String h1 = String.valueOf(this.eighthInt / 10);
+        String h2 = String.valueOf(this.eighthInt % 10);
 
         int shape = random.nextInt(4)+1;
 
@@ -85,11 +86,11 @@ public class QuadrupleCube {
                     {".", " ", " ", " ", ".", " ", " ", " ", ".", " ", " ", " ", "."},
                     {".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "."}
             };
-            this.firstColumn = (this.secondInt + this.fourthInt) / 2;
+            this.firstColumn = (Double.valueOf(this.secondInt) + Double.valueOf(this.fourthInt)) / 2;
             this.secondColumn = this.sixthInt;
-            this.thirdColumn = this.seventhInt;
+            this.thirdColumn = this.eighthInt;
             this.firstRow = this.firstInt;
-            this.secondRow = (this.thirdInt + this.fifthInt + this.eighthInt) / 3;
+            this.secondRow = (Double.valueOf(this.thirdInt) + Double.valueOf(this.fifthInt) + Double.valueOf(this.seventhInt)) / 3;
             this.thirdRow = 0;
         }
         //
@@ -109,10 +110,10 @@ public class QuadrupleCube {
                     {".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "."}
             };
             this.firstColumn = this.fourthInt;
-            this.secondColumn = (this.secondInt + this.sixthInt) / 2;
-            this.thirdColumn = this.seventhInt;
+            this.secondColumn = (Double.valueOf(this.secondInt) + Double.valueOf(this.sixthInt)) / 2;
+            this.thirdColumn = this.eighthInt;
             this.firstRow = this.firstInt;
-            this.secondRow = (this.thirdInt + this.fifthInt + this.eighthInt) / 3;
+            this.secondRow = (Double.valueOf(this.thirdInt) + Double.valueOf(this.fifthInt) + Double.valueOf(this.seventhInt)) / 3;
             this.thirdRow = 0;
         }
         else if (shape == 3) {
@@ -131,10 +132,10 @@ public class QuadrupleCube {
                     {".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "."}
             };
             this.firstColumn = this.sixthInt;
-            this.secondColumn = (this.secondInt + seventhInt) / 2;
+            this.secondColumn = (Double.valueOf(this.secondInt) + Double.valueOf(eighthInt)) / 2;
             this.thirdColumn = this.fourthInt;
-            this.firstRow = (this.firstInt + this.thirdInt) / 2;
-            this.secondRow = (this.fifthInt + this.eighthInt) / 2;
+            this.firstRow = (Double.valueOf(this.firstInt) + Double.valueOf(this.thirdInt)) / 2;
+            this.secondRow = (Double.valueOf(this.fifthInt) + Double.valueOf(this.seventhInt)) / 2;
             this.thirdRow = 0;
         }
         else if (shape == 4) {
@@ -152,11 +153,11 @@ public class QuadrupleCube {
                     {".", " ", " ", " ", ".", " ", " ", " ", ".", " ", " ", " ", "."},
                     {".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "."}
             };
-            this.firstColumn = (this.secondInt + this.sixthInt) / 2;
-            this.secondColumn = (this.fourthInt + this.seventhInt) / 2;
+            this.firstColumn = (Double.valueOf(this.secondInt) + Double.valueOf(this.sixthInt)) / 2;
+            this.secondColumn = (Double.valueOf(this.fourthInt) + Double.valueOf(this.eighthInt)) / 2;
             this.thirdColumn = 0;
-            this.firstRow = (this.firstInt + this.thirdInt) / 2;
-            this.secondRow = (this.fifthInt + this.eighthInt) / 2;
+            this.firstRow = (Double.valueOf(this.firstInt) + Double.valueOf(this.thirdInt)) / 2;
+            this.secondRow = (Double.valueOf(this.fifthInt) + Double.valueOf(this.seventhInt)) / 2;
             this.thirdRow = 0;
         }
         return cube;
