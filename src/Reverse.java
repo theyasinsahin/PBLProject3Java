@@ -1,6 +1,8 @@
 public class Reverse {
 
     public Piece takeTheReverse(Piece piece){
+        Shifting shifting = new Shifting();
+
         // KÜPLERİN YERİNİN DEĞİŞMESİ
         Cube cube1Tmp = piece.getCubes()[0][0];
         Cube cube2Tmp = piece.getCubes()[0][1];
@@ -21,6 +23,13 @@ public class Reverse {
         piece.setCubesElement(cube9Tmp, 2, 0);
         piece.setCubesElement(cube8Tmp, 2, 1);
         piece.setCubesElement(cube7Tmp, 2, 2);
+
+        if(piece.getCubes()[0][0] == null && piece.getCubes()[1][0] == null && piece.getCubes()[2][0] == null){
+            piece = shifting.shiftToLeft(piece);
+        }
+        if(piece.getCubes()[0][0] == null && piece.getCubes()[0][1] == null && piece.getCubes()[0][2] == null){
+            piece = shifting.shiftToUp(piece);
+        }
 
         return piece;
     }

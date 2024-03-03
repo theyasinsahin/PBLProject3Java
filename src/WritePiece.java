@@ -98,4 +98,42 @@ public class WritePiece {
             }
         }
     }
+    public void Inf_area(double [] array){
+        setCursor(1,33);
+        write("Human Robot");
+        setCursor(1,34);
+        write("Intelligence : "+array[0]);
+        setCursor(1,35);
+        write("Skill : "+array[1]);
+        setCursor(3,36);
+        write("Left arm: "+array[2]);
+        setCursor(3,37);
+        write("Right arm: "+array[3]);
+        setCursor(1,38);
+        write("Speed: "+array[4]);
+        setCursor(3,39);
+        write("Left leg: "+array[5]);
+        setCursor(3,40);
+        write("Right leg: "+array[6]);
+
+    }
+    public void Inf_area(Robot robot){
+        setCursor(1,36);
+        write("Human Robot");
+        setCursor(1,37);
+        write("Intelligence : "+robot.getIntelligence());
+        setCursor(1,38);
+        write("Skill : "+robot.getSkill());
+        setCursor(3,39);
+        write("Left arm: "+robot.getLA());
+        setCursor(3,40);
+        write("Right arm: "+robot.getRA());
+        setCursor(1,41);
+        write("Speed: "+robot.getSpeed());
+        setCursor(3,42);
+        write("Left leg: "+robot.getLL());
+        setCursor(3,43);
+        write("Right leg: "+robot.getRL());
+
+    }
 }

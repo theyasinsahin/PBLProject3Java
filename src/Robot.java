@@ -15,6 +15,14 @@ public class Robot {
     Cube cube13= new Cube();
     Cube cube14 = new Cube();
 
+    private double intelligence;
+    private double skill;
+    private double LA;
+    private double RA;
+    private double speed;
+    private double LL;
+    private double RL;
+
     public Robot(Cube[][] cubes) {
         this.cubes = cubes;
     }
@@ -63,11 +71,88 @@ public class Robot {
         cubes[4][3].createEmptyCube();
         cubes[4][2]=null;
         cubes[4][4]=null;
-
-
     }
 
     public Cube[][] getCubes() {
         return cubes;
+    }
+    public void powers(){
+        double[] powers = new double[7];
+        for(int i=0;i<=3;i++){
+            intelligence+=cubes[i][2].getY_force();
+        }
+
+         LA=cubes[1][0].getX_force()+cubes[1][1].getX_force();
+         RA=cubes[1][3].getX_force()+cubes[1][4].getX_force();
+
+        double armBalance= Math.max(LA,RA)/Math.min(LA,RA);
+         skill=(LA+RA)/armBalance;
+
+
+        for(int i=2;i<=4;i++){
+            LL+=cubes[i][1].getY_force();
+            RL+=cubes[i][3].getY_force();
+        }
+
+        double legBalance=Math.max(LL,RL)/Math.min(LL,RL);
+         speed=(LL+RL)/legBalance;
+
+
+    }
+
+    public double getIntelligence() {
+        return intelligence;
+    }
+
+    public void setIntelligence(double intelligence) {
+        this.intelligence = intelligence;
+    }
+
+    public double getSkill() {
+        return skill;
+    }
+
+    public void setSkill(double skill) {
+        this.skill = skill;
+    }
+
+    public double getLA() {
+        return LA;
+    }
+
+    public void setLA(double LA) {
+        this.LA = LA;
+    }
+
+    public double getRA() {
+        return RA;
+    }
+
+    public void setRA(double RA) {
+        this.RA = RA;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public double getLL() {
+        return LL;
+    }
+
+    public void setLL(double LL) {
+        this.LL = LL;
+    }
+
+    public double getRL() {
+        return RL;
+    }
+
+    public void setRL(double RL) {
+        this.RL = RL;
     }
 }

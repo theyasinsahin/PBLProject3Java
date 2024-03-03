@@ -31,7 +31,7 @@ public class Game {
     Piece piece18 = new Piece();
     Piece piece19 = new Piece();
     Piece piece20 = new Piece();
-   public static enigma.console.Console cn = Enigma.getConsole("Mouse and Keyboard",150,55);
+   public static enigma.console.Console cn = Enigma.getConsole("Mouse and Keyboard",300,55);
    public TextMouseListener tmlis; 
    public KeyListener klis; 
 
@@ -108,21 +108,43 @@ public void flood2(int cubeCX, int cubeCY){
        setCursor(2,28); write("X:1");
        setCursor(8,28); write("Y:1");
        setCursor(0,29); write("Used pieces (=/-)");
+       setCursor(1,30);write(" 01  02  03  04");
+       setCursor(1,31);write(" 05  06  07  08");
+       setCursor(1,32);write(" 09  10  11  12");
+       setCursor(1,33);write(" 13  14  15  16");
+       setCursor(1,34);write(" 17  18  19  20");
+
+
 
       setCursor(0,0);
       write(
               "+-1---2---3---4---5---> X\n" +
                       "|\n" + "1\n" + "+\n" + "+\n"+ "+\n" + "2\n" + "+\n" + "+\n" + "+\n" + "3\n" + "+\n" + "+\n" + "+\n" + "4\n" + "+\n" + "+\n" + ".\n" + "5\n" + ".\n" + ".\n" + "v\n" + "\n" + "Y");
 
+       //coumputer robot powers area
+       ComputerRobot crobot1=new ComputerRobot();
+       ComputerRobot crobot2=new ComputerRobot();
+       double [] powers1=crobot1.create();
+       double [] powers2= crobot2.create();
+       setCursor(1,45);
+       write("Computer Robot 1 (CR1)");
+       setCursor(1,46);
+       write("In: "+Math.floor(powers1[0])+"  Sk:"+Math.floor(powers1[1])+"  Sp:"+Math.floor(powers1[2]));
+//       setCursor(1,48);
+//       write("Computer Robot 2 (CR2)");
+//       setCursor(1,49);
+//       write("In: "+Math.floor(powers2[0])+"  Sk:"+Math.floor(powers2[1])+"  Sp:"+Math.floor(powers2[2]));
 
       //Robotun ekrana yazılması
      Robot robot1=new Robot();
      WritePiece writePiece =new WritePiece();
      robot1.creatRobot();
      writePiece.writeToScreenRobot(robot1,2,2);
+     robot1.powers();
+     writePiece.Inf_area(robot1);
 
 
-     //Seçili Parçayı gösterilir
+     //Seçili Parça gösterilir
        setCursor(pieceX,pieceY); write("###");
        setCursor(pieceX,pieceY+1); write("#");
        setCursor(pieceX,pieceY+2); write("###");
@@ -220,7 +242,7 @@ public void flood2(int cubeCX, int cubeCY){
        writePiece.avarageX(piece8, 104, 16, 3);
        writePiece.avarageY(piece8, 88, 31, 3);
 
-       //2 liler için
+       //Double Cubes Were Wrote
       setCursor(29,33);
       write("09");
       flood2(31,33);
@@ -260,17 +282,17 @@ public void flood2(int cubeCX, int cubeCY){
 
 
        //Single Cube were wrote
-       setCursor(29,44);
+       setCursor(31,44);
        write("14");
-       writePiece.writeToScreen(piece14, 31,44);
-       writePiece.avarageX(piece14, 37, 42, 1);
-       writePiece.avarageY(piece14, 29, 49, 1);
+       writePiece.writeToScreen(piece14, 33,44);
+       writePiece.avarageX(piece14, 39, 42, 1);
+       writePiece.avarageY(piece14, 31, 49, 1);
 
-       setCursor(40,44);
+       setCursor(42,44);
        write("15");
-       writePiece.writeToScreen(piece15, 42,44);
-       writePiece.avarageX(piece15, 48, 42, 1);
-       writePiece.avarageY(piece15, 39, 49, 1);
+       writePiece.writeToScreen(piece15, 44,44);
+       writePiece.avarageX(piece15, 50, 42, 1);
+       writePiece.avarageY(piece15, 41, 49, 1);
 
        setCursor(51,44);
        write("16");
@@ -440,6 +462,7 @@ public void flood2(int cubeCX, int cubeCY){
                 /////////////// ROTATE AND REVERSE //////////////////////
                if(e.getKeyCode()=='2' && pieceX == 28 && pieceY == 2){
                   piece1= rotate.rotateToRight(piece1);
+
                    flood1(31,3);
                    writePiece.writeToScreen(piece1,31,3);
                    writePiece.avarageX(piece1,44,1, 3);

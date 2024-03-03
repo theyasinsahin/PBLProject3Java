@@ -1,6 +1,8 @@
 public class Rotate {
     public Piece rotateToRight(Piece piece) {
 
+        Shifting shifting = new Shifting();
+
         // KÜPLERİN YERİNİN DEĞİŞMESİ
         Cube cube1Tmp = piece.getCubes()[0][0];
         Cube cube2Tmp = piece.getCubes()[0][1];
@@ -12,6 +14,8 @@ public class Rotate {
         Cube cube8Tmp = piece.getCubes()[2][1];
         Cube cube9Tmp = piece.getCubes()[2][2];
 
+
+
         piece.setCubesElement(cube7Tmp, 0, 0);
         piece.setCubesElement(cube4Tmp, 0, 1);
         piece.setCubesElement(cube1Tmp, 0, 2);
@@ -22,8 +26,13 @@ public class Rotate {
         piece.setCubesElement(cube6Tmp, 2, 1);
         piece.setCubesElement(cube3Tmp, 2, 2);
 
-        //KÜPLERDEKİ DEĞERLERİN DEĞİŞMESİ
-
+        if(piece.getCubes()[0][0] == null && piece.getCubes()[1][0] == null && piece.getCubes()[2][0] == null){
+            piece = shifting.shiftToLeft(piece);
+        }
+        if(piece.getCubes()[0][0] == null && piece.getCubes()[0][1] == null && piece.getCubes()[0][2] == null){
+            piece = shifting.shiftToUp(piece);
+        }
+        //KÜPLERDEKİ X ve Y DEĞERLERİNİN DEĞİŞMESİ
         for(int i = 0; i<piece.getCubes().length; i++){
             for(int j = 0; j<piece.getCubes().length;j++){
                 if(piece.getCubes()[i][j] != null){
@@ -58,4 +67,13 @@ public class Rotate {
                        -4 3-
                        - 3 -
                        -----
+
+
+null 2  3     2  3  null
+null 5  6  -> 5  6  null
+null 8  9     8  9  null
+
+null null null      4    5    6
+4     5    6     -> 7    8    9
+7     8    9        null null null
  */
