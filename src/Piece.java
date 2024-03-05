@@ -1,6 +1,8 @@
 import java.util.Random;
 
 public class Piece {
+    private int xCoordinate;
+    private int yCoordinate;
     Random random = new Random();
     public Cube[][] Cubes = new Cube[3][3];
     Cube cube1 = new Cube();
@@ -105,8 +107,6 @@ public class Piece {
     }
 
     public void twoCubePiece(){
-        cube1.createCube(6);
-        cube2.createCube(6);
         Cubes[0][0].createCube(6);
         Cubes[0][1].createCube(6);
         Cubes[0][2] = null;
@@ -143,5 +143,21 @@ public class Piece {
     }
     public void setCubes(Cube[][] cubes) {
         Cubes = cubes;
+    }
+
+    public int getxCoordinate() {
+        return xCoordinate;
+    }
+
+    public void setxCoordinate(int xCoordinate) {
+        this.xCoordinate = xCoordinate;
+    }
+
+    public int getyCoordinate() {
+        return yCoordinate;
+    }
+
+    public void setyCoordinate(int yCoordinate) {
+        this.yCoordinate = yCoordinate;
     }
 }

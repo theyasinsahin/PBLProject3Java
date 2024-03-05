@@ -73,13 +73,47 @@ public class Robot {
         cubes[4][4]=null;
     }
 
+    public void creatComputerRobot(){
+        cubes[0][0]=null;
+        cubes[0][1]=null;
+        cubes[0][2].createCubeForComputer();
+        cubes[0][3]=null;
+        cubes[0][4]=null;
+        cubes[1][0].createCubeForComputer();
+        cubes[1][1].createCubeForComputer();
+        cubes[1][2].createCubeForComputer();
+        cubes[1][3].createCubeForComputer();
+        cubes[1][4].createCubeForComputer();
+        cubes[2][0]=null;
+        cubes[2][1].createCubeForComputer();
+        cubes[2][2].createCubeForComputer();
+        cubes[2][3].createCubeForComputer();
+        cubes[2][4]=null;
+        cubes[3][0]=null;
+        cubes[3][1].createCubeForComputer();
+        cubes[3][2].createCubeForComputer();
+        cubes[3][3].createCubeForComputer();
+        cubes[3][4]=null;
+        cubes[4][0]=null;
+        cubes[4][1].createCubeForComputer();
+        cubes[4][3].createCubeForComputer();
+        cubes[4][2]=null;
+        cubes[4][4]=null;
+
+
+    }
     public Cube[][] getCubes() {
         return cubes;
     }
+    public void setCubesElement(Cube cube, int i, int j) {
+        cubes[i][j] = cube;
+    }
+
     public void powers(){
         double[] powers = new double[7];
         for(int i=0;i<=3;i++){
-            intelligence+=cubes[i][2].getY_force();
+                intelligence+=cubes[i][2].getY_force();
+
         }
 
          LA=cubes[1][0].getX_force()+cubes[1][1].getX_force();

@@ -34,11 +34,8 @@ public class WritePiece {
                     cursorY+=4;
                     cursorX = firstSituationX;
                 }
-
                 if(piece.getCubes()[k][l]!= null){
-
-                    cube.displayCube(piece.getCubes()[k][l].getCubeEmpty_array(), cursorX, cursorY);
-
+                    cube.displayCube(piece.getCubes()[k][l].getCube_array(), cursorX, cursorY);
                 }
                 cursorX += 4;
             }

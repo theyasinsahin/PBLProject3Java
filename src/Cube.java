@@ -9,8 +9,6 @@ public class Cube {
     private char y1_force ;
     private char y2_force ;
     private char[][] cube_array;
-    private char[][] cubeEmpty_array;
-
     private char[][] cube_array_on_demand;
 
     static void write(char str) {
@@ -69,17 +67,35 @@ public class Cube {
         return cube_array;
     }
 
+    public char[][] createCubeForComputer(){
+        this.x_force = random.nextInt(70)+30;
+        this.x1_force =(char) ((this.x_force / 10) +48);
+        this.x2_force = (char) ((this.x_force % 10) +48);
+
+        this.y_force = random.nextInt(70)+30;
+        this.y1_force = (char)((this.y_force / 10) +48);
+        this.y2_force = (char)((this.y_force % 10) +48);
+        cube_array = new char[][]{
+                {'+', '+', '+', '+', '+'},
+                {'+', ' ', y1_force, ' ', '+'},
+                {'+', x1_force, ' ', x2_force, '+'},
+                {'+', ' ', y2_force, ' ', '+'},
+                {'+', '+', '+', '+', '+'}
+        };
+        return cube_array;
+    }
+
     public char[][] createEmptyCube() {
         this.x_force = 0;
         this.y_force = 0;
-        cubeEmpty_array = new char[][]{
+        cube_array = new char[][]{
                 {'.','.','.','.','.'},
                 {'.',' ',' ',' ','.'},
                 {'.',' ',' ',' ','.'},
                 {'.',' ',' ',' ','.'},
                 {'.','.','.','.','.'}
         };
-        return cubeEmpty_array;
+        return cube_array;
     }
 
 
@@ -100,7 +116,6 @@ public class Cube {
     }
     public char[][] getCube_array() { return this.cube_array;}
 
-    public char[][] getCubeEmpty_array(){return this.cubeEmpty_array;}
 
     ///////////////////////////////Setters////////////////////////////////
 

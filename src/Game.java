@@ -7,10 +7,15 @@ import java.awt.event.KeyListener;
 
 public class Game {
 
+    boolean[][] isCubeFull = new boolean[5][5];
+    int whichPieceIdx = 0;
     int rmcX = 2; int rmcY = 2;
+    boolean[] isUsedPiece = new boolean[20];
+    int control = 0;
+
 
     int pieceX = 28; int pieceY = 2;
-
+    PieceDepot pieceDepot = new PieceDepot();
     Piece piece1 = new Piece();
     Piece piece2 = new Piece();
     Piece piece3 = new Piece();
@@ -103,6 +108,28 @@ public void flood2(int cubeCX, int cubeCY){
 
    Game() throws Exception {   // --- Contructor
 
+       pieceDepot.setPieces(piece1,0);
+       pieceDepot.setPieces(piece2,1);
+       pieceDepot.setPieces(piece3,2);
+       pieceDepot.setPieces(piece4,3);
+       pieceDepot.setPieces(piece5,4);
+       pieceDepot.setPieces(piece6,5);
+       pieceDepot.setPieces(piece7,6);
+       pieceDepot.setPieces(piece8,7);
+       pieceDepot.setPieces(piece9,8);
+       pieceDepot.setPieces(piece10,9);
+       pieceDepot.setPieces(piece11,10);
+       pieceDepot.setPieces(piece12,11);
+       pieceDepot.setPieces(piece13,12);
+       pieceDepot.setPieces(piece14,13);
+       pieceDepot.setPieces(piece15,14);
+       pieceDepot.setPieces(piece16,15);
+       pieceDepot.setPieces(piece17,16);
+       pieceDepot.setPieces(piece18,17);
+       pieceDepot.setPieces(piece19,18);
+       pieceDepot.setPieces(piece20,19);
+
+
        setCursor(0,27);
        write("Current piece (#):");
        setCursor(2,28); write("X:1");
@@ -122,26 +149,30 @@ public void flood2(int cubeCX, int cubeCY){
                       "|\n" + "1\n" + "+\n" + "+\n"+ "+\n" + "2\n" + "+\n" + "+\n" + "+\n" + "3\n" + "+\n" + "+\n" + "+\n" + "4\n" + "+\n" + "+\n" + ".\n" + "5\n" + ".\n" + ".\n" + "v\n" + "\n" + "Y");
 
        //coumputer robot powers area
-       ComputerRobot crobot1=new ComputerRobot();
-       ComputerRobot crobot2=new ComputerRobot();
+       GameScreen_2 game2=new GameScreen_2();
+/*
+       Robot crobot1=new Robot();
+       Robot crobot2=new Robot();
        double [] powers1=crobot1.create();
        double [] powers2= crobot2.create();
        setCursor(1,45);
        write("Computer Robot 1 (CR1)");
        setCursor(1,46);
        write("In: "+Math.floor(powers1[0])+"  Sk:"+Math.floor(powers1[1])+"  Sp:"+Math.floor(powers1[2]));
+ */
 //       setCursor(1,48);
 //       write("Computer Robot 2 (CR2)");
 //       setCursor(1,49);
 //       write("In: "+Math.floor(powers2[0])+"  Sk:"+Math.floor(powers2[1])+"  Sp:"+Math.floor(powers2[2]));
 
-      //Robotun ekrana yazılması
-     Robot robot1=new Robot();
-     WritePiece writePiece =new WritePiece();
-     robot1.creatRobot();
-     writePiece.writeToScreenRobot(robot1,2,2);
-     robot1.powers();
-     writePiece.Inf_area(robot1);
+       //Robotun ekrana yazılması
+       Robot crobot1 = new Robot();
+       Robot robot1=new Robot();
+       WritePiece writePiece =new WritePiece();
+       robot1.creatRobot();
+       writePiece.writeToScreenRobot(robot1,2,2);
+       robot1.powers();
+       writePiece.Inf_area(robot1);
 
 
      //Seçili Parça gösterilir
@@ -156,173 +187,71 @@ public void flood2(int cubeCX, int cubeCY){
        Rotate rotate = new Rotate();
        Reverse reverse = new Reverse();
 
-       //Quadruple Cubes were Created
-       piece1.fourCubePiece();
-       piece2.fourCubePiece();
-       piece3.fourCubePiece();
-       piece4.fourCubePiece();
-
-       //Trible Cubes were Created
-       piece5.threeCubePiece();
-       piece6.threeCubePiece();
-       piece7.threeCubePiece();
-       piece8.threeCubePiece();
-
-       //Double Cubes were Created
-       piece9.twoCubePiece();
-       piece10.twoCubePiece();
-       piece11.twoCubePiece();
-       piece12.twoCubePiece();
-       piece13.twoCubePiece();
-
-       //Single Cubes were Created
-       piece14.oneCubePiece();
-       piece15.oneCubePiece();
-       piece16.oneCubePiece();
-       piece17.oneCubePiece();
-       piece18.oneCubePiece();
-       piece19.oneCubePiece();
-       piece20.oneCubePiece();
+       //Cubes were Created
+       for(int i = 0; i<20; i++){
+           if(i<4){
+               pieceDepot.getPieces()[i].fourCubePiece();
+           }else if(i<8){
+               pieceDepot.getPieces()[i].threeCubePiece();
+           }else if(i<13){
+               pieceDepot.getPieces()[i].twoCubePiece();
+           }else{
+               pieceDepot.getPieces()[i].oneCubePiece();
+           }
+       }
 
        //Quadruple Cubes were Wrote
-       setCursor(29,3);
-       write("01");
-       flood1(31,3);
-       writePiece.writeToScreen(piece1, 31,3);
-       writePiece.avarageX(piece1,44,1, 3);
-       writePiece.avarageY(piece1,28,16, 3);
-
-       setCursor(49,3);
-      write("02");
-      flood1(51,3);
-       writePiece.writeToScreen(piece2, 51,3);
-       writePiece.avarageX(piece2, 64,1, 3);
-       writePiece.avarageY(piece2, 48, 16, 3);
-
-       setCursor(69,3);
-      write("03");
-      flood1(71,3);
-       writePiece.writeToScreen(piece3, 71,3);
-       writePiece.avarageX(piece3, 84, 1, 3 );
-       writePiece.avarageY(piece3, 68, 16, 3);
-
-       setCursor(89,3);
-      write("04");
-      flood1(91,3);
-       writePiece.writeToScreen(piece4, 91,3);
-       writePiece.avarageX(piece4, 104, 1, 3);
-       writePiece.avarageY(piece4, 88, 16, 3);
+       for(int i = 0; i<4;i++){
+               setCursor(29+(20*i),3);
+               pieceDepot.getPieces()[i].setxCoordinate(28+(20*i));
+               pieceDepot.getPieces()[i].setyCoordinate(2);
+               write("0"+String.valueOf(i+1));
+               flood1(31+(20*i),3);
+               writePiece.writeToScreen(pieceDepot.getPieces()[i], 31+(20*i),3);
+               writePiece.avarageX(pieceDepot.getPieces()[i],44+(20*i),1, 3);
+               writePiece.avarageY(pieceDepot.getPieces()[i],28+(20*i),16, 3);
+        }
 
        //Trible Cubes were Wrote
-      setCursor(29,18);
-      write("05");
-      flood1(31,18);
-       writePiece.writeToScreen(piece5, 31,18);
-       writePiece.avarageX(piece5, 44, 16, 3);
-       writePiece.avarageY(piece5, 28, 31, 3);
+       for(int i = 0; i<4; i++){
+           setCursor(29+(20*i),18);
+           pieceDepot.getPieces()[i+4].setxCoordinate(28+(20*i));
+           pieceDepot.getPieces()[i+4].setyCoordinate(17);
+           write("0"+String.valueOf(i+5));
+           flood1(31+(20*i),18);
+           writePiece.writeToScreen(pieceDepot.getPieces()[i+4], 31+(20*i),18);
+           writePiece.avarageX(pieceDepot.getPieces()[i+4], 44+(20*i), 16, 3);
+           writePiece.avarageY(pieceDepot.getPieces()[i+4], 28+(20*i), 31, 3);
+       }
 
-      setCursor(49,18);
-      write("06");
-      flood1(51,18);
-       writePiece.writeToScreen(piece6, 51,18);
-       writePiece.avarageX(piece6, 64, 16, 3);
-       writePiece.avarageY(piece6, 48, 31, 3);
-
-       setCursor(69,18);
-      write("07");
-      flood1(71,18);
-       writePiece.writeToScreen(piece7, 71,18);
-       writePiece.avarageX(piece7, 84, 16, 3);
-       writePiece.avarageY(piece7, 68, 31, 3);
-
-       setCursor(89,18);
-      write("08");
-      flood1(91,18);
-       writePiece.writeToScreen(piece8, 91,18);
-       writePiece.avarageX(piece8, 104, 16, 3);
-       writePiece.avarageY(piece8, 88, 31, 3);
 
        //Double Cubes Were Wrote
-      setCursor(29,33);
-      write("09");
-      flood2(31,33);
-       writePiece.writeToScreen(piece9, 31,33);
-       writePiece.avarageX(piece9, 41, 31, 2);
-       writePiece.avarageY(piece9, 29, 42, 2);
+       for(int i = 0; i<5; i++){
+           setCursor(29+(15*i),33);
+           pieceDepot.getPieces()[i+8].setxCoordinate(28+(15*i));
+           pieceDepot.getPieces()[i+8].setyCoordinate(32);
+           if(i == 0){
+               write("0"+String.valueOf(i+9));
+           }else{
+               write(String.valueOf(i+9));
+           }
+           flood2(31+(15*i),33);
+           writePiece.writeToScreen(pieceDepot.getPieces()[i+8], 31+(15*i),33);
+           writePiece.avarageX(pieceDepot.getPieces()[i+8], 41+(15*i), 31, 2);
+           writePiece.avarageY(pieceDepot.getPieces()[i+8], 29+(15*i), 42, 2);
+       }
 
-      setCursor(44,33);
-      write("10");
-      flood2(46,33);
-       writePiece.writeToScreen(piece10, 46,33);
-       writePiece.avarageX(piece10, 56, 31, 2);
-       writePiece.avarageY(piece10, 44, 42, 2);
+       //Single Cubes were wrote
+       for(int i = 0; i<7; i++){
+           setCursor(29+(10*i),44);
+           pieceDepot.getPieces()[i+13].setxCoordinate(28+(10*i));
+           pieceDepot.getPieces()[i+13].setyCoordinate(43);
+           write(String.valueOf(i+14));
+           writePiece.writeToScreen(pieceDepot.getPieces()[i+13], 31+(10*i),44);
+           writePiece.avarageX(pieceDepot.getPieces()[i+13], 37+(10*i), 42, 1);
+           writePiece.avarageY(pieceDepot.getPieces()[i+13], 29+(10*i), 49, 1);
+       }
 
-       setCursor(59,33);
-      write("11");
-      flood2(61,33);
-       writePiece.writeToScreen(piece11, 61,33);
-       writePiece.avarageX(piece11, 71, 31, 2);
-       writePiece.avarageY(piece11, 59, 42, 2);
-
-
-       setCursor(74,33);
-      write("12");
-      flood2(76,33);
-       writePiece.writeToScreen(piece12, 76,33);
-       writePiece.avarageX(piece12, 86, 31, 2);
-       writePiece.avarageY(piece12, 74, 42, 2);
-
-
-       setCursor(89,33);
-      write("13");
-      flood2(91,33);
-       writePiece.writeToScreen(piece13, 91,33);
-       writePiece.avarageX(piece13, 101, 31, 2);
-       writePiece.avarageY(piece13, 89, 42, 2);
-
-
-       //Single Cube were wrote
-       setCursor(31,44);
-       write("14");
-       writePiece.writeToScreen(piece14, 33,44);
-       writePiece.avarageX(piece14, 39, 42, 1);
-       writePiece.avarageY(piece14, 31, 49, 1);
-
-       setCursor(42,44);
-       write("15");
-       writePiece.writeToScreen(piece15, 44,44);
-       writePiece.avarageX(piece15, 50, 42, 1);
-       writePiece.avarageY(piece15, 41, 49, 1);
-
-       setCursor(51,44);
-       write("16");
-       writePiece.writeToScreen(piece16, 53,44);
-       writePiece.avarageX(piece16, 58, 42, 1);
-       writePiece.avarageY(piece16, 51, 49, 1);
-
-       setCursor(62,44);
-       write("17");
-       writePiece.writeToScreen(piece17, 64,44);
-       writePiece.avarageX(piece17, 70, 42, 1);
-       writePiece.avarageY(piece17, 62, 49, 1);
-
-       setCursor(73,44);
-       write("18");
-       writePiece.writeToScreen(piece18, 75,44);
-       writePiece.avarageX(piece18, 81, 42, 1);
-       writePiece.avarageY(piece18, 73, 49, 1);
-
-       setCursor(84,44);
-       write("19");
-       writePiece.writeToScreen(piece19, 86,44);
-       writePiece.avarageX(piece19, 92, 42, 1);
-       writePiece.avarageY(piece19, 84, 49, 1);
-
-       setCursor(95,44);
-       write("20");
-       writePiece.writeToScreen(piece20, 97,44);
-       writePiece.avarageX(piece20, 103, 42, 1);
-       writePiece.avarageY(piece20, 95, 49, 1);
 
 
 
@@ -339,167 +268,240 @@ public void flood2(int cubeCX, int cubeCY){
          public void mouseReleased(TextMouseEvent arg0) {}
       };
       cn.getTextWindow().addTextMouseListener(tmlis);
-    
+
       klis=new KeyListener() {
          public void keyTyped(KeyEvent e) {}
          public void keyPressed(KeyEvent e) {
             if(keypr==0) {
                keypr=1;
 
-                if(e.getKeyCode()== 'D' && (rmcX-2)/4+1 < 5) {
-                    setCursor(rmcX, rmcY); write(" ");
-                    writePiece.writeToScreenRobot(robot1,2,2);
-                    rmcX += 4;
-                    setCursor(rmcX, rmcY); write("#");
-                }
-                else if(e.getKeyCode()== 'A' && (rmcX-2)/4+1 > 1) {
-                    setCursor(rmcX, rmcY); write(" ");
-                    writePiece.writeToScreenRobot(robot1,2,2);
-                    rmcX -= 4;
-                    setCursor(rmcX, rmcY); write("#");
-                }
-                else if(e.getKeyCode()== 'W' && (rmcY-2)/4+1 > 1) {
-                    setCursor(rmcX, rmcY); write(" ");
-                    writePiece.writeToScreenRobot(robot1,2,2);
-                    rmcY -= 4;
-                    setCursor(rmcX, rmcY); write("#");
-                }
-                else if(e.getKeyCode()== 'S' && (rmcY-2)/4+1 < 5) {
-                    setCursor(rmcX, rmcY); write(" ");
-                    writePiece.writeToScreenRobot(robot1,2,2);
-                    rmcY += 4;
-                    setCursor(rmcX, rmcY); write("#");
-                }
+               if(control == 0){
+                   if(e.getKeyCode()== 'D' && (rmcX-2)/4+1 < 5) {
+                       setCursor(rmcX, rmcY); write(" ");
+                       writePiece.writeToScreenRobot(robot1,2,2);
+                       rmcX += 4;
+                       setCursor(rmcX, rmcY); write("#");
+                   }
+                   else if(e.getKeyCode()== 'A' && (rmcX-2)/4+1 > 1) {
+                       setCursor(rmcX, rmcY); write(" ");
+                       writePiece.writeToScreenRobot(robot1,2,2);
+                       rmcX -= 4;
+                       setCursor(rmcX, rmcY); write("#");
+                   }
+                   else if(e.getKeyCode()== 'W' && (rmcY-2)/4+1 > 1) {
+                       setCursor(rmcX, rmcY); write(" ");
+                       writePiece.writeToScreenRobot(robot1,2,2);
+                       rmcY -= 4;
+                       setCursor(rmcX, rmcY); write("#");
+                   }
+                   else if(e.getKeyCode()== 'S' && (rmcY-2)/4+1 < 5) {
+                       setCursor(rmcX, rmcY); write(" ");
+                       writePiece.writeToScreenRobot(robot1,2,2);
+                       rmcY += 4;
+                       setCursor(rmcX, rmcY); write("#");
+                   }
 
 
-                //Küp Seçimi
-                //başlangıç koordinatı 27ye 1
-                //sol ok -> 37
-                //yukarı ok -> 38
-                //Sağ ok -> 39
-                //Aşağı ok -> 40
-                //(19,27) current piece yazdır
-                else if (e.getKeyCode() == 37 && pieceX>28) {
-                    setCursor(pieceX,pieceY); write("   ");
-                    setCursor(pieceX,pieceY+1); write(" ");
-                    setCursor(pieceX,pieceY+2); write("   ");
-                    pieceX -= 20;
-                    setCursor(pieceX,pieceY); write("###");
-                    setCursor(pieceX,pieceY+1); write("#");
-                    setCursor(pieceX,pieceY+2); write("###");
-                }
-                else if (e.getKeyCode() == 39 && pieceX < 70) {
-                    setCursor(pieceX,pieceY); write("   ");
-                    setCursor(pieceX,pieceY+1); write(" ");
-                    setCursor(pieceX,pieceY+2); write("   ");
-                    pieceX += 20;
-                    setCursor(pieceX,pieceY); write("###");
-                    setCursor(pieceX,pieceY+1); write("#");
-                    setCursor(pieceX,pieceY+2); write("###");
-                }
-                else if (e.getKeyCode() == 38 && pieceY>2) {
-                    setCursor(pieceX,pieceY); write("   ");
-                    setCursor(pieceX,pieceY+1); write(" ");
-                    setCursor(pieceX,pieceY+2); write("   ");
-                    pieceY -= 15;
-                    setCursor(pieceX,pieceY); write("###");
-                    setCursor(pieceX,pieceY+1); write("#");
-                    setCursor(pieceX,pieceY+2); write("###");
-                }
-                else if (e.getKeyCode() == 40 && pieceY<13) {
-                    setCursor(pieceX,pieceY); write("   ");
-                    setCursor(pieceX,pieceY+1); write(" ");
-                    setCursor(pieceX,pieceY+2); write("   ");
-                    pieceY += 15;
-                    setCursor(pieceX,pieceY); write("###");
-                    setCursor(pieceX,pieceY+1); write("#");
-                    setCursor(pieceX,pieceY+2); write("###");
-                }
+                   //Küp Seçimi
+                   //başlangıç koordinatı 27ye 1
+                   //sol ok -> 37
+                   //yukarı ok -> 38
+                   //Sağ ok -> 39
+                   //Aşağı ok -> 40
+                   //(19,27) current piece yazdır
+                   else if (e.getKeyCode() == 37 && pieceX>28) { //LEFT
+                       setCursor(pieceX,pieceY); write("   ");
+                       setCursor(pieceX,pieceY+1); write(" ");
+                       setCursor(pieceX,pieceY+2); write("   ");
+                       if(whichPieceIdx >= 0 && whichPieceIdx <= 7){
+                           pieceX -= 20;
+                       }else if (whichPieceIdx >= 8 && whichPieceIdx <= 12){
+                           pieceX -= 15;
+                       }else{
+                           pieceX -= 10;
+                       }
 
-                setCursor(19,27);
-                switch (pieceX){
-                    case 28:
-                        switch (pieceY){
-                            case 2:
-                                write("1");
-                                break;
-                            case 17:
-                                write("5");
-                                break;
+                       setCursor(pieceX,pieceY); write("###");
+                       setCursor(pieceX,pieceY+1); write("#");
+                       setCursor(pieceX,pieceY+2); write("###");
+                   }
+                   else if (e.getKeyCode() == 39 && pieceX < 80) { //RIGHT
+                       setCursor(pieceX,pieceY); write("   ");
+                       setCursor(pieceX,pieceY+1); write(" ");
+                       setCursor(pieceX,pieceY+2); write("   ");
+                       if(whichPieceIdx >= 0 && whichPieceIdx <= 7){
+                           pieceX += 20;
+                       }else if (whichPieceIdx >= 8 && whichPieceIdx <= 12){
+                           pieceX += 15;
+                       }else{
+                           pieceX += 10;
+                       }
+                       setCursor(pieceX,pieceY); write("###");
+                       setCursor(pieceX,pieceY+1); write("#");
+                       setCursor(pieceX,pieceY+2); write("###");
+                   }
+                   else if (e.getKeyCode() == 38 && pieceY>2) { //UP
+                       setCursor(pieceX,pieceY); write("   ");
+                       setCursor(pieceX,pieceY+1); write(" ");
+                       setCursor(pieceX,pieceY+2); write("   ");
+                        if(whichPieceIdx == 9 || whichPieceIdx == 14 || whichPieceIdx == 17){pieceX+=5;}
+                        else if(whichPieceIdx == 10){pieceX += 10;}
+                        else if(whichPieceIdx == 11 || whichPieceIdx == 15 || whichPieceIdx == 18){pieceX -= 5;}
+
+                        if(whichPieceIdx >= 4 && whichPieceIdx <= 12)
+                        {
+                            pieceY -= 15;
+                        }else{
+                            pieceY -= 11;
                         }
-                        break;
-                    case 48:
-                        switch (pieceY){
-                            case 2:
-                                write("2");
-                                break;
-                            case 17:
-                                write("6");
-                                break;
-                        }
-                        break;
-                    case 68:
-                        switch (pieceY){
-                            case 2:
-                                write("3");
-                                break;
-                            case 17:
-                                write("7");
-                                break;
-                        }
-                        break;
-                    case 88:
-                        switch (pieceY){
-                            case 2:
-                                write("4");
-                                break;
-                            case 17:
-                                write("8");
-                                break;
-                        }
-                }
 
-                /////////////// ROTATE AND REVERSE //////////////////////
-               if(e.getKeyCode()=='2' && pieceX == 28 && pieceY == 2){
-                  piece1= rotate.rotateToRight(piece1);
+                       setCursor(pieceX,pieceY); write("###");
+                       setCursor(pieceX,pieceY+1); write("#");
+                       setCursor(pieceX,pieceY+2); write("###");
+                   }
+                   else if (e.getKeyCode() == 40 && pieceY<45) { //DOWN
+                       setCursor(pieceX,pieceY); write("   ");
+                       setCursor(pieceX,pieceY+1); write(" ");
+                       setCursor(pieceX,pieceY+2); write("   ");
 
-                   flood1(31,3);
-                   writePiece.writeToScreen(piece1,31,3);
-                   writePiece.avarageX(piece1,44,1, 3);
-                   writePiece.avarageY(piece1,28,16, 3);
+                       if(whichPieceIdx == 5 || whichPieceIdx == 9 || whichPieceIdx == 11){pieceX-=5;}
+                       else if(whichPieceIdx == 6){pieceX -= 10;}
+
+                       if(whichPieceIdx >= 0 && whichPieceIdx <= 7)
+                       {
+                           pieceY += 15;
+                       }else{
+                           pieceY += 11;
+                       }
+
+                       setCursor(pieceX,pieceY); write("###");
+                       setCursor(pieceX,pieceY+1); write("#");
+                       setCursor(pieceX,pieceY+2); write("###");
+                   }
+
+                   ////// Hangi parçanın seçili olduğunu ekrana yazan kısım
+                   setCursor(19,27);
+                   for(int i = 0; i<20; i++){
+                       if(pieceX == pieceDepot.getPieces()[i].getxCoordinate() && pieceY == pieceDepot.getPieces()[i].getyCoordinate()){
+                           write(String.valueOf(i+1)+" ");
+                           whichPieceIdx = i;
+                       }
+                   }
+
                }
 
-               if(e.getKeyCode()=='3'  && pieceX == 28 && pieceY == 2){
-                   piece1 = reverse.takeTheReverse(piece1);
-                   flood1(31,3);
-                   writePiece.writeToScreen(piece1,31,3);
-                   writePiece.avarageX(piece1,44,1, 3);
-                   writePiece.avarageY(piece1,28,16, 3);
-               }
+                if(e.getKeyCode()=='9' && control==0){
 
-                if(e.getKeyCode()=='2' && pieceX == 48 && pieceY == 2){
-                    piece2= rotate.rotateToRight(piece2);
-                    flood1(51,3);
-                    writePiece.writeToScreen(piece2,51,3);
-                    writePiece.avarageX(piece2,64,1, 3);
-                    writePiece.avarageY(piece2,48,16, 3);
+                    for (int i = 0; i < 60; i++) {
+                        for (int j = 0; j < 300; j++) {
+                            cn.getTextWindow().output("  ");
+                        }
+                    }
+
+                    crobot1.creatComputerRobot();
+                    writePiece.writeToScreenRobot(crobot1, 2, 2);
+                    crobot1.powers();
+                    setCursor(1, 45);
+                    write("Computer Robot 1 (CR1)");
+                    setCursor(1, 46);
+                    write("In:" + Math.floor(crobot1.getIntelligence()) + "  Sk:" + Math.floor(crobot1.getSkill()) + "  Sp:" + Math.floor(crobot1.getSpeed()));
+                    control = 1;
+
+
                 }
 
-                if(e.getKeyCode()=='3'  && pieceX == 48 && pieceY == 2){
-                    piece2 = reverse.takeTheReverse(piece2);
-                    flood1(51,3);
-                    writePiece.writeToScreen(piece2,51,3);
-                    writePiece.avarageX(piece2,64,1, 3);
-                    writePiece.avarageY(piece2,48,16, 3);
+                if(e.getKeyCode()=='0' && control==1){
+                    game2.screen_2();
+                    control = 0;
                 }
+
+
+if(control == 0){
+    /////////////// ROTATE AND REVERSE //////////////////////
+    if(e.getKeyCode()=='2'){
+        pieceDepot.setPieces(rotate.rotateToRight(pieceDepot.getPieces()[whichPieceIdx]),whichPieceIdx);
+        if(whichPieceIdx>= 0 && whichPieceIdx <= 3){
+            flood1(31+((whichPieceIdx)*20),3);
+            writePiece.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31+(whichPieceIdx*20),3);
+            writePiece.avarageX(pieceDepot.getPieces()[whichPieceIdx],44+(whichPieceIdx*20),1, 3);
+            writePiece.avarageY(pieceDepot.getPieces()[whichPieceIdx],28+(whichPieceIdx*20),16, 3);
+        }else if(whichPieceIdx >= 4 && whichPieceIdx <= 7){
+            flood1(31+((whichPieceIdx-4)*20),18);
+            writePiece.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31+((whichPieceIdx-4)*20),18);
+            writePiece.avarageX(pieceDepot.getPieces()[whichPieceIdx],44+((whichPieceIdx-4)*20),16, 3);
+            writePiece.avarageY(pieceDepot.getPieces()[whichPieceIdx],28+((whichPieceIdx-4)*20),31, 3);
+        }
+
+    }
+
+    if(e.getKeyCode()=='3'){
+        pieceDepot.setPieces(reverse.takeTheReverse(pieceDepot.getPieces()[whichPieceIdx]), whichPieceIdx);
+        if(whichPieceIdx>= 0 && whichPieceIdx <= 3){
+            flood1(31+((whichPieceIdx)*20),3);
+            writePiece.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31+(whichPieceIdx*20),3);
+            writePiece.avarageX(pieceDepot.getPieces()[whichPieceIdx],44+(whichPieceIdx*20),1, 3);
+            writePiece.avarageY(pieceDepot.getPieces()[whichPieceIdx],28+(whichPieceIdx*20),16, 3);
+        }else if(whichPieceIdx >= 4 && whichPieceIdx <= 7){
+            flood1(31+((whichPieceIdx-4)*20),18);
+            writePiece.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31+((whichPieceIdx-4)*20),18);
+            writePiece.avarageX(pieceDepot.getPieces()[whichPieceIdx],44+((whichPieceIdx-4)*20),16, 3);
+            writePiece.avarageY(pieceDepot.getPieces()[whichPieceIdx],28+((whichPieceIdx-4)*20),31, 3);
+        }
+
+    }
+
+    ////////////////ROBOT ÜZERİNDE HANGİ KOORDİNATI GÖSTERDİĞİMİZ
+    String positionX = String.valueOf((rmcX-2)/4+1);
+    String positionY = String.valueOf((rmcY-2)/4+1);
+    setCursor(4,28); write(positionX);
+    setCursor(10,28); write(positionY);
+
+
+
+    ///////////SELECT THE PIECE
+    //Was created the cube which is show us the empty cube because of control the non-empty cubes
+    Cube cube = new Cube();
+    cube.createEmptyCube();
+    if(e.getKeyCode()=='1') {
+        if (!isUsedPiece[whichPieceIdx]) {
+            int robotCX = (rmcX - 2) / 4 + 1;
+            int robotCY = (rmcY - 2) / 4 + 1;
+            boolean isAvailable = true;
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (pieceDepot.getPieces()[whichPieceIdx].getCubes()[i][j] != null) {
+                        if (robot1.getCubes()[robotCY + i - 1][robotCX + j - 1] == null || robot1.getCubes()[robotCY + i - 1][robotCX + j - 1].getCube_array() == cube.getCube_array() || isCubeFull[robotCY + i - 1][robotCX + j - 1]) {
+                            isAvailable = false;
+                        }
+                    }
+                }
+            }
+            if (isAvailable) {
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        if (pieceDepot.getPieces()[whichPieceIdx].getCubes()[i][j] != null) {
+                            robot1.setCubesElement(pieceDepot.getPieces()[whichPieceIdx].getCubes()[i][j], robotCY + i - 1, robotCX + j - 1);
+                            isCubeFull[robotCY + i - 1][robotCX + j - 1] = true;
+                        }
+                    }
+                }
+                writePiece.writeToScreenRobot(robot1, 2, 2);
+                robot1.powers();
+                writePiece.Inf_area(robot1);
+
+                isUsedPiece[whichPieceIdx] = true;
+            }
+        }
+    }
+    }
+
+
             }
 
 
-             ////////////////ROBOT ÜZERİNDE HANGİ KOORDİNATI GÖSTERDİĞİMİZ
-             String positionX = String.valueOf((rmcX-2)/4+1);
-             String positionY = String.valueOf((rmcY-2)/4+1);
-             setCursor(4,28); write(positionX);
-             setCursor(10,28); write(positionY);
+
+
+
 
 
          }
