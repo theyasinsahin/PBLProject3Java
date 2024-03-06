@@ -430,8 +430,16 @@ if(control == 0){
             writePiece.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31+((whichPieceIdx-4)*20),18);
             writePiece.avarageX(pieceDepot.getPieces()[whichPieceIdx],44+((whichPieceIdx-4)*20),16, 3);
             writePiece.avarageY(pieceDepot.getPieces()[whichPieceIdx],28+((whichPieceIdx-4)*20),31, 3);
+        }else if(whichPieceIdx >= 8 && whichPieceIdx <= 12){
+            flood2(31+((whichPieceIdx-8)*15),33);
+            writePiece.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31+((whichPieceIdx-8)*15),33);
+            writePiece.avarageX(pieceDepot.getPieces()[whichPieceIdx],41+((whichPieceIdx-8)*15),31, 2);
+            writePiece.avarageY(pieceDepot.getPieces()[whichPieceIdx],29+((whichPieceIdx-8)*15),42, 2);
+        }else if(whichPieceIdx >= 13 && whichPieceIdx <= 19){
+            writePiece.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 27+((whichPieceIdx-13)*10),44);
+            writePiece.avarageX(pieceDepot.getPieces()[whichPieceIdx],33+((whichPieceIdx-13)*10),45, 1);
+            writePiece.avarageY(pieceDepot.getPieces()[whichPieceIdx],33+((whichPieceIdx-13)*10),46, 1);
         }
-
     }
 
     if(e.getKeyCode()=='3'){
@@ -446,6 +454,11 @@ if(control == 0){
             writePiece.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31+((whichPieceIdx-4)*20),18);
             writePiece.avarageX(pieceDepot.getPieces()[whichPieceIdx],44+((whichPieceIdx-4)*20),16, 3);
             writePiece.avarageY(pieceDepot.getPieces()[whichPieceIdx],28+((whichPieceIdx-4)*20),31, 3);
+        }else if(whichPieceIdx >= 8 && whichPieceIdx <= 12) {
+            flood2(31 + ((whichPieceIdx - 8) * 15), 33);
+            writePiece.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31 + ((whichPieceIdx - 8) * 15), 33);
+            writePiece.avarageX(pieceDepot.getPieces()[whichPieceIdx], 41 + ((whichPieceIdx - 8) * 15), 31, 2);
+            writePiece.avarageY(pieceDepot.getPieces()[whichPieceIdx], 29 + ((whichPieceIdx - 8) * 15), 42, 2);
         }
 
     }

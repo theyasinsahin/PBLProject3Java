@@ -54,12 +54,11 @@ public class WritePiece {
                     y += piece.getCubes()[l][k].getY_force() ;
                     setCursor(curX,curY);
                     write(String.valueOf(y/count));
-
                 }
                 if (piece.getCubes()[l][k]==null){
                     temp++;
                 }
-                if(temp==length){
+                if(temp==length && length != 1){
                     setCursor(curX,curY);
                     write("00");
                 }
@@ -87,7 +86,7 @@ public class WritePiece {
                 if (piece.getCubes()[k][l]==null){
                     temp++;
                 }
-                if(temp==length){
+                if(temp==length && length != 1){
                     setCursor(curX,curY);
                     write("00");
                 }
