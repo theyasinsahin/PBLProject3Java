@@ -111,10 +111,9 @@ public class Robot {
 
     public void powers(){
         double[] powers = new double[7];
-        for(int i=0;i<=3;i++){
-                intelligence+=cubes[i][2].getY_force();
 
-        }
+        intelligence = cubes[0][2].getY_force() + cubes[1][2].getY_force() + cubes[2][2].getY_force() + cubes[3][2].getY_force();
+
 
          LA=cubes[1][0].getX_force()+cubes[1][1].getX_force();
          RA=cubes[1][3].getX_force()+cubes[1][4].getX_force();

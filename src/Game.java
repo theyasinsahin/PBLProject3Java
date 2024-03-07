@@ -150,20 +150,6 @@ public void flood2(int cubeCX, int cubeCY){
 
        //coumputer robot powers area
        GameScreen_2 game2=new GameScreen_2();
-/*
-       Robot crobot1=new Robot();
-       Robot crobot2=new Robot();
-       double [] powers1=crobot1.create();
-       double [] powers2= crobot2.create();
-       setCursor(1,45);
-       write("Computer Robot 1 (CR1)");
-       setCursor(1,46);
-       write("In: "+Math.floor(powers1[0])+"  Sk:"+Math.floor(powers1[1])+"  Sp:"+Math.floor(powers1[2]));
- */
-//       setCursor(1,48);
-//       write("Computer Robot 2 (CR2)");
-//       setCursor(1,49);
-//       write("In: "+Math.floor(powers2[0])+"  Sk:"+Math.floor(powers2[1])+"  Sp:"+Math.floor(powers2[2]));
 
        //Robotun ekrana yazılması
        Robot crobot1 = new Robot();
@@ -507,52 +493,22 @@ if(control == 0){
         }
     }
     }
-
-
             }
-
-
-
-
-
-
-
          }
          public void keyReleased(KeyEvent e) {}
       };
+
       cn.getTextWindow().addKeyListener(klis);
       // ----------------------------------------------------
 
-
-      int px=5,py=5;
-      //cn.getTextWindow().output(px,py,'P');
       while(true) {
          if(mousepr==1) {  // if mouse button pressed
-            //cn.getTextWindow().output(mousex,mousey,'#');  // write a char to x,y position without changing cursor position
-            px=mousex; py=mousey;
-            
+
             mousepr=0;     // last action  
          }
 
          if(keypr==1) {    // if keyboard button pressed
-/*
-            if(rkey==KeyEvent.VK_LEFT) px--;   
-            if(rkey==KeyEvent.VK_RIGHT) px++;
-            if(rkey==KeyEvent.VK_UP) py--;
-            if(rkey==KeyEvent.VK_DOWN) py++;
 
-            char rckey=(char)rkey;
-            //        left          right          up            down
-            if(rckey=='%' || rckey=='\'' || rckey=='&' || rckey=='(') cn.getTextWindow().output(px,py,'P'); // VK kullanmadan test teknigi
-            else cn.getTextWindow().output(rckey);
-            
-            if(rkey==KeyEvent.VK_SPACE) {
-               String str;         
-               str=cn.readLine();     // keyboardlistener running and readline input by using enter 
-               cn.getTextWindow().setCursorPosition(5, 20);
-               cn.getTextWindow().output(str);
-            }
-             */
             keypr=0;    // last action  
          }
 
