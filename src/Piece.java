@@ -1,6 +1,11 @@
 import java.util.Random;
 
 public class Piece {
+    private int xCursorOnRobot;
+    private int yCursorOnRobot;
+    private int xIdxOnRobot;
+    private int yIdxOnRobot;
+    private boolean isSelected;
     private int xCoordinate;
     private int yCoordinate;
     Random random = new Random();
@@ -16,6 +21,7 @@ public class Piece {
     Cube cube9 = new Cube();
 
     public Piece(){
+        isSelected = false;
         Cubes[0][0] = cube1;
         Cubes[0][1] = cube2;
         Cubes[0][2] = cube3;
@@ -159,5 +165,45 @@ public class Piece {
 
     public void setyCoordinate(int yCoordinate) {
         this.yCoordinate = yCoordinate;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
+    public int getxIdxOnRobot() {
+        return xIdxOnRobot;
+    }
+
+    public void setxIdxOnRobot(int xIdxOnRobot) {
+        this.xIdxOnRobot = xIdxOnRobot;
+    }
+
+    public int getyIdxOnRobot() {
+        return yIdxOnRobot;
+    }
+
+    public void setyIdxOnRobot(int yIdxOnRobot) {
+        this.yIdxOnRobot = yIdxOnRobot;
+    }
+
+    public int getxCursorOnRobot() {
+        return xCursorOnRobot;
+    }
+
+    public void setxCursorOnRobot(int xCursorOnRobot) {
+        this.xCursorOnRobot = xCursorOnRobot;
+    }
+
+    public int getyCursorOnRobot() {
+        return yCursorOnRobot;
+    }
+
+    public void setyCursorOnRobot(int yCursorOnRobot) {
+        this.yCursorOnRobot = yCursorOnRobot;
     }
 }

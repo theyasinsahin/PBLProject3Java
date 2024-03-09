@@ -122,10 +122,8 @@ public class Robot {
          skill=(LA+RA)/armBalance;
 
 
-        for(int i=2;i<=4;i++){
-            LL+=cubes[i][1].getY_force();
-            RL+=cubes[i][3].getY_force();
-        }
+         LL = cubes[2][1].getY_force() + cubes[3][1].getY_force() +cubes[4][1].getY_force();
+         RL = cubes[2][3].getY_force() + cubes[3][3].getY_force() +cubes[4][3].getY_force();
 
         double legBalance=Math.max(LL,RL)/Math.min(LL,RL);
          speed=(LL+RL)/legBalance;

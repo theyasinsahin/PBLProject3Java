@@ -10,7 +10,6 @@ public class Game {
     boolean[][] isCubeFull = new boolean[5][5];
     int whichPieceIdx = 0;
     int rmcX = 2; int rmcY = 2;
-    boolean[] isUsedPiece = new boolean[20];
     int control = 0;
 
 
@@ -404,7 +403,7 @@ public void flood2(int cubeCX, int cubeCY){
 
 if(control == 0){
     /////////////// ROTATE AND REVERSE //////////////////////
-    if(e.getKeyCode()=='2'){
+    if(e.getKeyCode()=='2' && pieceDepot.getPieces()[whichPieceIdx].isSelected() == false){
         pieceDepot.setPieces(rotate.rotateToRight(pieceDepot.getPieces()[whichPieceIdx]),whichPieceIdx);
         if(whichPieceIdx>= 0 && whichPieceIdx <= 3){
             flood1(31+((whichPieceIdx)*20),3);
@@ -428,7 +427,7 @@ if(control == 0){
         }
     }
 
-    if(e.getKeyCode()=='3'){
+    if(e.getKeyCode()=='3' && pieceDepot.getPieces()[whichPieceIdx].isSelected() == false){
         pieceDepot.setPieces(reverse.takeTheReverse(pieceDepot.getPieces()[whichPieceIdx]), whichPieceIdx);
         if(whichPieceIdx>= 0 && whichPieceIdx <= 3){
             flood1(31+((whichPieceIdx)*20),3);
@@ -462,7 +461,7 @@ if(control == 0){
     Cube cube = new Cube();
     cube.createEmptyCube();
     if(e.getKeyCode()=='1') {
-        if (!isUsedPiece[whichPieceIdx]) {
+        if (!pieceDepot.getPieces()[whichPieceIdx].isSelected()) {
             int robotCX = (rmcX - 2) / 4 + 1;
             int robotCY = (rmcY - 2) / 4 + 1;
             boolean isAvailable = true;
@@ -488,8 +487,31 @@ if(control == 0){
                 robot1.powers();
                 writePiece.Inf_area(robot1);
 
-                isUsedPiece[whichPieceIdx] = true;
+                pieceDepot.getPieces()[whichPieceIdx].setSelected(true);
+                pieceDepot.getPieces()[whichPieceIdx].setxIdxOnRobot((rmcX-2)/4);
+                pieceDepot.getPieces()[whichPieceIdx].setyIdxOnRobot((rmcY-2)/4);
+                pieceDepot.getPieces()[whichPieceIdx].setxCursorOnRobot(rmcX);
+                pieceDepot.getPieces()[whichPieceIdx].setyCursorOnRobot(rmcY);
             }
+        }
+    }
+
+    ///////////ERASING////////
+    Erasing erasing = new Erasing();
+    if(e.getKeyCode() == '4'){
+        if(pieceDepot.getPieces()[whichPieceIdx].isSelected()){//Eğer daha önce seçilmişse bu işlemi yap
+            erasing.eraseSelectedPiece(cn, pieceDepot.getPieces()[whichPieceIdx], robot1, pieceDepot.getPieces()[whichPieceIdx].getxIdxOnRobot(), pieceDepot.getPieces()[whichPieceIdx].getyIdxOnRobot(), pieceDepot.getPieces()[whichPieceIdx].getxCursorOnRobot(), pieceDepot.getPieces()[whichPieceIdx].getyCursorOnRobot());
+            pieceDepot.getPieces()[whichPieceIdx].setSelected(false);
+
+            //Robotun üzerindeki seçilen parçanın denk geldiği küplere silme işlemi yapıldığı için boşaldığını söylüyoruz.
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (pieceDepot.getPieces()[whichPieceIdx].getCubes()[i][j] != null) {
+                        isCubeFull[pieceDepot.getPieces()[whichPieceIdx].getyIdxOnRobot() + i][pieceDepot.getPieces()[whichPieceIdx].getxIdxOnRobot() + j] = false;
+                    }
+                }
+            }
+
         }
     }
     }
