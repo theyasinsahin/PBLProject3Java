@@ -38,7 +38,7 @@ public class Piece {
 
 
     public void fourCubePiece(){
-      this.shape = random.nextInt(1,5);
+        this.shape = random.nextInt(1,5);
 
         if(shape == 1){
             Cubes[0][0].createCube(24);

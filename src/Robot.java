@@ -115,18 +115,18 @@ public class Robot {
         intelligence = cubes[0][2].getY_force() + cubes[1][2].getY_force() + cubes[2][2].getY_force() + cubes[3][2].getY_force();
 
 
-         LA=cubes[1][0].getX_force()+cubes[1][1].getX_force();
-         RA=cubes[1][3].getX_force()+cubes[1][4].getX_force();
+        LA=cubes[1][0].getX_force()+cubes[1][1].getX_force();
+        RA=cubes[1][3].getX_force()+cubes[1][4].getX_force();
 
         double armBalance= Math.max(LA,RA)/Math.min(LA,RA);
-         skill=(LA+RA)/armBalance;
+        skill=(LA+RA)/armBalance;
 
 
-         LL = cubes[2][1].getY_force() + cubes[3][1].getY_force() +cubes[4][1].getY_force();
-         RL = cubes[2][3].getY_force() + cubes[3][3].getY_force() +cubes[4][3].getY_force();
+        LL = cubes[2][1].getY_force() + cubes[3][1].getY_force() +cubes[4][1].getY_force();
+        RL = cubes[2][3].getY_force() + cubes[3][3].getY_force() +cubes[4][3].getY_force();
 
         double legBalance=Math.max(LL,RL)/Math.min(LL,RL);
-         speed=(LL+RL)/legBalance;
+        speed=(LL+RL)/legBalance;
 
 
     }
