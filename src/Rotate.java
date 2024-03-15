@@ -26,6 +26,9 @@ public class Rotate {
         piece.setCubesElement(cube6Tmp, 2, 1);
         piece.setCubesElement(cube3Tmp, 2, 2);
 
+        if(piece.getCubes()[0][1] == null && piece.getCubes()[1][1] == null && piece.getCubes()[2][1] == null){
+            piece = shifting.shiftToLeft(piece);
+        }
         if(piece.getCubes()[0][0] == null && piece.getCubes()[1][0] == null && piece.getCubes()[2][0] == null){
             piece = shifting.shiftToLeft(piece);
         }

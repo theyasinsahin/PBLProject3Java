@@ -83,7 +83,7 @@ public class ResultScreen {
     // chess = game 1
     // ping pong = game 2
     // run = game 3
-    public void gameInitializer(int whichGame) throws InterruptedException {
+    public void gameInitializer(int whichGame){
         int[] roboScore = new int[4];
         int whichRobot = 0;
         int point = 0;
@@ -122,7 +122,6 @@ public class ResultScreen {
             for(int j = 0;j<roboScore[whichRobot];j++){
 
                 setCursor(37+j,y+(whichRobot*2));write("X");
-
             }
 
 

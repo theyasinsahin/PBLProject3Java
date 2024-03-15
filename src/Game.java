@@ -344,7 +344,7 @@ public class Game {
                                 cn.getTextWindow().output("  ");
                             }
                         }
-
+                        whichPieceIdx = 1;
                         /////Bütün ekranı tekrar yaz
                         indexOfHumanRobot++;
 
@@ -384,27 +384,9 @@ public class Game {
                             }
                         }
                         resultScreen.screen();
-                        try {
-                            resultScreen.gameInitializer(0);
-                        } catch (InterruptedException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                        control++;
-                    }
-                    if(e.getKeyCode()=='0'&& control ==4){
-                        try {
-                            resultScreen.gameInitializer(1);
-                        } catch (InterruptedException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                        control++;
-                    }
-                    if(e.getKeyCode()=='0'&& control ==5){
-                        try {
-                            resultScreen.gameInitializer(2);
-                        } catch (InterruptedException ex) {
-                            throw new RuntimeException(ex);
-                        }
+                        resultScreen.gameInitializer(0);
+                        resultScreen.gameInitializer(1);
+                        resultScreen.gameInitializer(2);
                         control++;
                     }
 
@@ -429,7 +411,7 @@ public class Game {
                             writePiece.avarageX(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx],41+((whichPieceIdx-8)*15),31, 2);
                             writePiece.avarageY(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx],29+((whichPieceIdx-8)*15),42, 2);
                         }else if(whichPieceIdx >= 13 && whichPieceIdx <= 19){
-                            writePiece.writeToScreen(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx], 27+((whichPieceIdx-13)*10),44);
+                            writePiece.writeToScreen(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx], 31+((whichPieceIdx-13)*10),44);
                             writePiece.avarageX(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx],33+((whichPieceIdx-13)*10),45, 1);
                             writePiece.avarageY(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx],33+((whichPieceIdx-13)*10),46, 1);
                         }
