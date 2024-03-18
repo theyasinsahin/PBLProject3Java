@@ -2,7 +2,7 @@ public class Erasing {
     public void eraseSelectedPiece(enigma.console.Console cn, Piece piece, Robot robot, int xIdxOnRobot, int yIdxOnRobot, int xCursorOnRobot, int yCursorOnRobot){
         Cube cube = new Cube();
         cube.createEmptyCube(); //Dolu parçaların yerini boş küplerle doldurabilmek için boş bir küp yaratıyorum.
-        WritePiece writePiece = new WritePiece();
+        WriteMethods writeMethods = new WriteMethods();
         cn.getTextWindow().setCursorPosition(yCursorOnRobot, xCursorOnRobot);
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -20,8 +20,8 @@ public class Erasing {
             }
         }
 
-        writePiece.writeToScreenRobot(robot,2,2);
+        writeMethods.writeToScreenRobot(robot,2,2);
         robot.powers();
-        writePiece.Inf_area(robot);
+        writeMethods.Inf_area(robot);
     }
 }

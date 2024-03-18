@@ -1,6 +1,8 @@
 import java.util.Random;
 
 public class Piece {
+    private int xCursorOnInfArea;
+    private int yCursorOnInfArea;
     private int xCursorOnRobot;
     private int yCursorOnRobot;
     private int xIdxOnRobot;
@@ -214,5 +216,21 @@ public class Piece {
 
     public void setPreIsSelected(boolean preIsSelected) {
         this.preIsSelected = preIsSelected;
+    }
+
+    public int getxCursorOnInfArea() {
+        return xCursorOnInfArea;
+    }
+
+    public void setxCursorOnInfArea(int xCursorOnInfArea) {
+        this.xCursorOnInfArea = xCursorOnInfArea;
+    }
+
+    public int getyCursorOnInfArea() {
+        return yCursorOnInfArea;
+    }
+
+    public void setyCursorOnInfArea(int yCursorOnInfArea) {
+        this.yCursorOnInfArea = yCursorOnInfArea;
     }
 }
