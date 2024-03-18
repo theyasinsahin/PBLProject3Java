@@ -108,15 +108,15 @@ public class Game {
                 pieceDepot.getPieces()[i].setyCursorOnInfArea(y+1);
             }
             else if(i<=11){
-                pieceDepot.getPieces()[i].setxCursorOnInfArea(x+(4*(i-7)));
+                pieceDepot.getPieces()[i].setxCursorOnInfArea(x+(4*(i-8)));
                 pieceDepot.getPieces()[i].setyCursorOnInfArea(y+2);
             }
             else if(i<=15){
-                pieceDepot.getPieces()[i].setxCursorOnInfArea(x+(4*(i-10)));
+                pieceDepot.getPieces()[i].setxCursorOnInfArea(x+(4*(i-12)));
                 pieceDepot.getPieces()[i].setyCursorOnInfArea(y+3);
             }
             else if(i<=19){
-                pieceDepot.getPieces()[i].setxCursorOnInfArea(x+(4*(i-13)));
+                pieceDepot.getPieces()[i].setxCursorOnInfArea(x+(4*(i-16)));
                 pieceDepot.getPieces()[i].setyCursorOnInfArea(y+4);
             }
         }
