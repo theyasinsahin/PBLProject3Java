@@ -1,3 +1,4 @@
+
 import java.util.Random;
 import java.util.Set;
 
@@ -21,22 +22,36 @@ public class ResultScreen {
 
     private double[][] robotPoints = new double[4][3];
     private String[] winner = new String[3];
-
+    private int point = 0;
 
     public void screen(){
 
-        robotPoints[0][0] = Math.floor(hr1.getIntelligence());
-        robotPoints[0][1] = Math.floor(hr1.getSkill());
-        robotPoints[0][2] = Math.floor(hr1.getSpeed());
-        robotPoints[1][0] = Math.floor(hr2.getIntelligence());
-        robotPoints[1][1] = Math.floor(hr2.getSkill());
-        robotPoints[1][2] = Math.floor(hr2.getSpeed());
-        robotPoints[2][0] = Math.floor(cr1.getIntelligence());
-        robotPoints[2][1] = Math.floor(cr1.getSkill());
-        robotPoints[2][2] = Math.floor(cr1.getSpeed());
-        robotPoints[3][0] = Math.floor(cr2.getIntelligence());
-        robotPoints[3][1] = Math.floor(cr2.getSkill());
-        robotPoints[3][2] = Math.floor(cr2.getSpeed());
+
+
+
+        robotPoints[0][0] = 0 + Math.floor(hr1.getIntelligence());
+        robotPoints[0][1] = 0 + Math.floor(hr1.getSkill());
+        robotPoints[0][2] = 0 + Math.floor(hr1.getSpeed());
+        robotPoints[1][0] = 0 + Math.floor(hr2.getIntelligence());
+        robotPoints[1][1] = 0 + Math.floor(hr2.getSkill());
+        robotPoints[1][2] = 0 + Math.floor(hr2.getSpeed());
+        robotPoints[2][0] = 0 + Math.floor(cr1.getIntelligence());
+        robotPoints[2][1] = 0 + Math.floor(cr1.getSkill());
+        robotPoints[2][2] = 0 + Math.floor(cr1.getSpeed());
+        robotPoints[3][0] = 0 + Math.floor(cr2.getIntelligence());
+        robotPoints[3][1] = 0 + Math.floor(cr2.getSkill());
+        robotPoints[3][2] = 0 + Math.floor(cr2.getSpeed());
+
+        for(int i=0; i<4; i++){
+            for(int j = 0;j<3;j++){
+                if(Double.isNaN(robotPoints[i][j])) {
+                    robotPoints[i][j] = 0d;
+                }
+            }
+
+        }
+
+
 
 
         setCursor(0,0);write("=== RoboChess ==============================================");
@@ -86,7 +101,7 @@ public class ResultScreen {
     public void gameInitializer(int whichGame){
         int[] roboScore = new int[4];
         int whichRobot = 0;
-        int point = 0;
+
         int y;
         int y1 = 0;
         Random random = new Random();
@@ -127,7 +142,7 @@ public class ResultScreen {
 
         }
         setCursor(7,y1);
-        if((roboScore[0]==19)||(roboScore[1]==19)){
+        if((roboScore[0]==20)||(roboScore[1]==20)){
             winner[whichGame] = "Blue Team";
             point += 2;
 
@@ -140,12 +155,13 @@ public class ResultScreen {
         if(whichGame == 2){
             setCursor(33,39);write("                     ");
             if(point <= 4){
-                setCursor(33,39);write("Red Team!!!");
+                setCursor(33,39);write(" Red Team!!!");
             }else{
-                setCursor(33,39);write("Blue Team!!!");
+                setCursor(33,39);write(" Blue Team!!!");
             }
 
         }
+
     }
 
 }

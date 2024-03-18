@@ -6,6 +6,7 @@ public class Piece {
     private int xIdxOnRobot;
     private int yIdxOnRobot;
     private boolean isSelected;
+    private boolean preIsSelected;
     private int xCoordinate;
     private int yCoordinate;
     Random random = new Random();
@@ -205,5 +206,13 @@ public class Piece {
 
     public void setyCursorOnRobot(int yCursorOnRobot) {
         this.yCursorOnRobot = yCursorOnRobot;
+    }
+
+    public boolean isPreIsSelected() {
+        return preIsSelected;
+    }
+
+    public void setPreIsSelected(boolean preIsSelected) {
+        this.preIsSelected = preIsSelected;
     }
 }

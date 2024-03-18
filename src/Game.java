@@ -14,7 +14,7 @@ public class Game {
 
 
     int pieceX = 28; int pieceY = 2;
-    public PieceDepot[] pieceDepots = new PieceDepot[2];
+    public PieceDepot pieceDepot = new PieceDepot();
 
     public static enigma.console.Console cn = Enigma.getConsole("Mouse and Keyboard",300,55);
     public TextMouseListener tmlis;
@@ -90,16 +90,9 @@ public class Game {
 
     Game() throws Exception {   // --- Contructor
 
-        pieceDepots[0] = new PieceDepot();
-        pieceDepots[1] = new PieceDepot();
 
-        //Initiliaze the piece depots
-        for(int i=0;i<20;i++){
-            pieceDepots[0].setPieces(new Piece(),i);
-        }
-
-        for(int i=0;i<20;i++){
-            pieceDepots[1].setPieces(new Piece(),i);
+        for (int i = 0; i < 20; i++) {
+            pieceDepot.setPieces(new Piece(), i);
         }
 
         setCursor(0,27);
@@ -152,30 +145,17 @@ public class Game {
         //Cubes were Created for Human Robot 1
         for(int i = 0; i<20; i++){
             if(i<4){
-                pieceDepots[0].getPieces()[i].fourCubePiece();
+                pieceDepot.getPieces()[i].fourCubePiece();
             }else if(i<8){
-                pieceDepots[0].getPieces()[i].threeCubePiece();
+                pieceDepot.getPieces()[i].threeCubePiece();
             }else if(i<13){
-                pieceDepots[0].getPieces()[i].twoCubePiece();
+                pieceDepot.getPieces()[i].twoCubePiece();
             }else{
-                pieceDepots[0].getPieces()[i].oneCubePiece();
+                pieceDepot.getPieces()[i].oneCubePiece();
             }
         }
 
-        //Cubes were Created for Human Robot 2
-        for(int i = 0; i<20; i++){
-            if(i<4){
-                pieceDepots[1].getPieces()[i].fourCubePiece();
-            }else if(i<8){
-                pieceDepots[1].getPieces()[i].threeCubePiece();
-            }else if(i<13){
-                pieceDepots[1].getPieces()[i].twoCubePiece();
-            }else{
-                pieceDepots[1].getPieces()[i].oneCubePiece();
-            }
-        }
-
-        writePiece.writeAllPieces(pieceDepots[indexOfHumanRobot], cn);
+        writePiece.writeAllPieces(this.pieceDepot, cn);
 
 
 
@@ -307,7 +287,7 @@ public class Game {
                         ////// Hangi parçanın seçili olduğunu ekrana yazan kısım
                         setCursor(19,27);
                         for(int i = 0; i<20; i++){
-                            if(pieceX == pieceDepots[indexOfHumanRobot].getPieces()[i].getxCoordinate() && pieceY == pieceDepots[indexOfHumanRobot].getPieces()[i].getyCoordinate()){
+                            if(pieceX == pieceDepot.getPieces()[i].getxCoordinate() && pieceY == pieceDepot.getPieces()[i].getyCoordinate()){
                                 write(String.valueOf(i+1)+" ");
                                 whichPieceIdx = i;
                             }
@@ -358,7 +338,7 @@ public class Game {
                         pieceX = 28;
                         pieceY = 2;
                         writePiece.writeScreen(pieceX, pieceY);
-                        writePiece.writeAllPieces(pieceDepots[indexOfHumanRobot], cn);
+                        writePiece.writeAllPieces(pieceDepot, cn);
 
                         humanRobots[indexOfHumanRobot].creatRobot();
                         writePiece.writeToScreenRobot(humanRobots[indexOfHumanRobot],2,2);
@@ -393,56 +373,59 @@ public class Game {
 
 
                     /////////////// ROTATE AND REVERSE //////////////////////
-                    if(e.getKeyCode()=='2' && !(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].isSelected())){
-                        pieceDepots[indexOfHumanRobot].setPieces(rotate.rotateToRight(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx]),whichPieceIdx);
+                    if(e.getKeyCode()=='2' && !(pieceDepot.getPieces()[whichPieceIdx].isSelected())){
+                        pieceDepot.setPieces(rotate.rotateToRight(pieceDepot.getPieces()[whichPieceIdx]),whichPieceIdx);
                         if(whichPieceIdx>= 0 && whichPieceIdx <= 3){
                             flood1(31+((whichPieceIdx)*20),3);
-                            writePiece.writeToScreen(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx], 31+(whichPieceIdx*20),3);
-                            writePiece.avarageX(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx],44+(whichPieceIdx*20),1, 3);
-                            writePiece.avarageY(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx],28+(whichPieceIdx*20),16, 3);
+                            writePiece.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31+(whichPieceIdx*20),3);
+                            writePiece.avarageX(pieceDepot.getPieces()[whichPieceIdx],44+(whichPieceIdx*20),1, 3);
+                            writePiece.avarageY(pieceDepot.getPieces()[whichPieceIdx],28+(whichPieceIdx*20),16, 3);
                         }else if(whichPieceIdx >= 4 && whichPieceIdx <= 7){
                             flood1(31+((whichPieceIdx-4)*20),18);
-                            writePiece.writeToScreen(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx], 31+((whichPieceIdx-4)*20),18);
-                            writePiece.avarageX(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx],44+((whichPieceIdx-4)*20),16, 3);
-                            writePiece.avarageY(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx],28+((whichPieceIdx-4)*20),31, 3);
+                            writePiece.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31+((whichPieceIdx-4)*20),18);
+                            writePiece.avarageX(pieceDepot.getPieces()[whichPieceIdx],44+((whichPieceIdx-4)*20),16, 3);
+                            writePiece.avarageY(pieceDepot.getPieces()[whichPieceIdx],28+((whichPieceIdx-4)*20),31, 3);
                         }else if(whichPieceIdx >= 8 && whichPieceIdx <= 12){
                             flood2(31+((whichPieceIdx-8)*15),33);
-                            writePiece.writeToScreen(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx], 31+((whichPieceIdx-8)*15),33);
-                            writePiece.avarageX(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx],41+((whichPieceIdx-8)*15),31, 2);
-                            writePiece.avarageY(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx],29+((whichPieceIdx-8)*15),42, 2);
+                            writePiece.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31+((whichPieceIdx-8)*15),33);
+                            writePiece.avarageX(pieceDepot.getPieces()[whichPieceIdx],41+((whichPieceIdx-8)*15),31, 2);
+                            writePiece.avarageY(pieceDepot.getPieces()[whichPieceIdx],29+((whichPieceIdx-8)*15),42, 2);
                         }else if(whichPieceIdx >= 13 && whichPieceIdx <= 19){
-                            writePiece.writeToScreen(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx], 31+((whichPieceIdx-13)*10),44);
-                            writePiece.avarageX(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx],33+((whichPieceIdx-13)*10),45, 1);
-                            writePiece.avarageY(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx],33+((whichPieceIdx-13)*10),46, 1);
+                            writePiece.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31+((whichPieceIdx-13)*10),44);
+                            writePiece.avarageX(pieceDepot.getPieces()[whichPieceIdx],33+((whichPieceIdx-13)*10),45, 1);
+                            writePiece.avarageY(pieceDepot.getPieces()[whichPieceIdx],33+((whichPieceIdx-13)*10),46, 1);
                         }
                     }
 
-                    if(e.getKeyCode()=='3' && pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].isSelected() == false){
-                        pieceDepots[indexOfHumanRobot].setPieces(reverse.takeTheReverse(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx]), whichPieceIdx);
+                    if(e.getKeyCode()=='3' && pieceDepot.getPieces()[whichPieceIdx].isSelected() == false){
+                        pieceDepot.setPieces(reverse.takeTheReverse(pieceDepot.getPieces()[whichPieceIdx]), whichPieceIdx);
                         if(whichPieceIdx>= 0 && whichPieceIdx <= 3){
                             flood1(31+((whichPieceIdx)*20),3);
-                            writePiece.writeToScreen(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx], 31+(whichPieceIdx*20),3);
-                            writePiece.avarageX(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx],44+(whichPieceIdx*20),1, 3);
-                            writePiece.avarageY(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx],28+(whichPieceIdx*20),16, 3);
+                            writePiece.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31+(whichPieceIdx*20),3);
+                            writePiece.avarageX(pieceDepot.getPieces()[whichPieceIdx],44+(whichPieceIdx*20),1, 3);
+                            writePiece.avarageY(pieceDepot.getPieces()[whichPieceIdx],28+(whichPieceIdx*20),16, 3);
                         }else if(whichPieceIdx >= 4 && whichPieceIdx <= 7){
                             flood1(31+((whichPieceIdx-4)*20),18);
-                            writePiece.writeToScreen(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx], 31+((whichPieceIdx-4)*20),18);
-                            writePiece.avarageX(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx],44+((whichPieceIdx-4)*20),16, 3);
-                            writePiece.avarageY(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx],28+((whichPieceIdx-4)*20),31, 3);
+                            writePiece.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31+((whichPieceIdx-4)*20),18);
+                            writePiece.avarageX(pieceDepot.getPieces()[whichPieceIdx],44+((whichPieceIdx-4)*20),16, 3);
+                            writePiece.avarageY(pieceDepot.getPieces()[whichPieceIdx],28+((whichPieceIdx-4)*20),31, 3);
                         }else if(whichPieceIdx >= 8 && whichPieceIdx <= 12) {
                             flood2(31 + ((whichPieceIdx - 8) * 15), 33);
-                            writePiece.writeToScreen(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx], 31 + ((whichPieceIdx - 8) * 15), 33);
-                            writePiece.avarageX(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx], 41 + ((whichPieceIdx - 8) * 15), 31, 2);
-                            writePiece.avarageY(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx], 29 + ((whichPieceIdx - 8) * 15), 42, 2);
+                            writePiece.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31 + ((whichPieceIdx - 8) * 15), 33);
+                            writePiece.avarageX(pieceDepot.getPieces()[whichPieceIdx], 41 + ((whichPieceIdx - 8) * 15), 31, 2);
+                            writePiece.avarageY(pieceDepot.getPieces()[whichPieceIdx], 29 + ((whichPieceIdx - 8) * 15), 42, 2);
                         }
 
                     }
 
                     ////////////////ROBOT ÜZERİNDE HANGİ KOORDİNATI GÖSTERDİĞİMİZ
-                    String positionX = String.valueOf((rmcX-2)/4+1);
-                    String positionY = String.valueOf((rmcY-2)/4+1);
-                    setCursor(4,28); write(positionX);
-                    setCursor(10,28); write(positionY);
+                    if(control == 0 || control == 2){
+                        String positionX = String.valueOf((rmcX-2)/4+1);
+                        String positionY = String.valueOf((rmcY-2)/4+1);
+                        setCursor(4,28); write(positionX);
+                        setCursor(10,28); write(positionY);
+                    }
+
 
 
 
@@ -452,13 +435,13 @@ public class Game {
                     cube.createEmptyCube();
                     if(e.getKeyCode()=='1') {
                         try {
-                            if (!pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].isSelected()) {
+                            if (!pieceDepot.getPieces()[whichPieceIdx].isSelected()) {
                                 int robotCX = (rmcX - 2) / 4 + 1;
                                 int robotCY = (rmcY - 2) / 4 + 1;
                                 boolean isAvailable = true;
                                 for (int i = 0; i < 3; i++) {
                                     for (int j = 0; j < 3; j++) {
-                                        if (pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].getCubes()[i][j] != null) {
+                                        if (pieceDepot.getPieces()[whichPieceIdx].getCubes()[i][j] != null) {
                                             if (humanRobots[indexOfHumanRobot].getCubes()[robotCY + i - 1][robotCX + j - 1] == null || humanRobots[indexOfHumanRobot].getCubes()[robotCY + i - 1][robotCX + j - 1].getCube_array() == cube.getCube_array() || isCubeFull[robotCY + i - 1][robotCX + j - 1]) {
                                                 isAvailable = false;
                                             }
@@ -468,8 +451,8 @@ public class Game {
                                 if (isAvailable) {
                                     for (int i = 0; i < 3; i++) {
                                         for (int j = 0; j < 3; j++) {
-                                            if (pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].getCubes()[i][j] != null) {
-                                                humanRobots[indexOfHumanRobot].setCubesElement(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].getCubes()[i][j], robotCY + i - 1, robotCX + j - 1);
+                                            if (pieceDepot.getPieces()[whichPieceIdx].getCubes()[i][j] != null) {
+                                                humanRobots[indexOfHumanRobot].setCubesElement(pieceDepot.getPieces()[whichPieceIdx].getCubes()[i][j], robotCY + i - 1, robotCX + j - 1);
                                                 isCubeFull[robotCY + i - 1][robotCX + j - 1] = true;
                                             }
                                         }
@@ -478,11 +461,14 @@ public class Game {
                                     humanRobots[indexOfHumanRobot].powers();
                                     writePiece.Inf_area(humanRobots[indexOfHumanRobot]);
 
-                                    pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].setSelected(true);
-                                    pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].setxIdxOnRobot((rmcX-2)/4);
-                                    pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].setyIdxOnRobot((rmcY-2)/4);
-                                    pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].setxCursorOnRobot(rmcX);
-                                    pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].setyCursorOnRobot(rmcY);
+                                    pieceDepot.getPieces()[whichPieceIdx].setSelected(true);
+                                    if(control == 0){
+                                        pieceDepot.getPieces()[whichPieceIdx].setPreIsSelected(true);
+                                    }
+                                    pieceDepot.getPieces()[whichPieceIdx].setxIdxOnRobot((rmcX-2)/4);
+                                    pieceDepot.getPieces()[whichPieceIdx].setyIdxOnRobot((rmcY-2)/4);
+                                    pieceDepot.getPieces()[whichPieceIdx].setxCursorOnRobot(rmcX);
+                                    pieceDepot.getPieces()[whichPieceIdx].setyCursorOnRobot(rmcY);
                                 }
                             }
                         } catch (Exception exception){
@@ -494,19 +480,21 @@ public class Game {
                     ///////////ERASING////////
                     Erasing erasing = new Erasing();
                     if(e.getKeyCode() == '4'){
-                        if(pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].isSelected()){//Eğer daha önce seçilmişse bu işlemi yap
-                            erasing.eraseSelectedPiece(cn, pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx], humanRobots[indexOfHumanRobot], pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].getxIdxOnRobot(), pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].getyIdxOnRobot(), pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].getxCursorOnRobot(), pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].getyCursorOnRobot());
-                            pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].setSelected(false);
+                        if(pieceDepot.getPieces()[whichPieceIdx].isSelected()){//Eğer daha önce seçilmişse bu işlemi yap
+                            if(!(control == 2 && pieceDepot.getPieces()[whichPieceIdx].isPreIsSelected()))
+                            {
+                                erasing.eraseSelectedPiece(cn, pieceDepot.getPieces()[whichPieceIdx], humanRobots[indexOfHumanRobot], pieceDepot.getPieces()[whichPieceIdx].getxIdxOnRobot(), pieceDepot.getPieces()[whichPieceIdx].getyIdxOnRobot(), pieceDepot.getPieces()[whichPieceIdx].getxCursorOnRobot(), pieceDepot.getPieces()[whichPieceIdx].getyCursorOnRobot());
+                                pieceDepot.getPieces()[whichPieceIdx].setSelected(false);
 
-                            //Robotun üzerindeki seçilen parçanın denk geldiği küplere silme işlemi yapıldığı için boşaldığını söylüyoruz.
-                            for (int i = 0; i < 3; i++) {
-                                for (int j = 0; j < 3; j++) {
-                                    if (pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].getCubes()[i][j] != null) {
-                                        isCubeFull[pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].getyIdxOnRobot() + i][pieceDepots[indexOfHumanRobot].getPieces()[whichPieceIdx].getxIdxOnRobot() + j] = false;
+                                //Robotun üzerindeki seçilen parçanın denk geldiği küplere silme işlemi yapıldığı için boşaldığını söylüyoruz.
+                                for (int i = 0; i < 3; i++) {
+                                    for (int j = 0; j < 3; j++) {
+                                        if (pieceDepot.getPieces()[whichPieceIdx].getCubes()[i][j] != null) {
+                                            isCubeFull[pieceDepot.getPieces()[whichPieceIdx].getyIdxOnRobot() + i][pieceDepot.getPieces()[whichPieceIdx].getxIdxOnRobot() + j] = false;
+                                        }
                                     }
                                 }
                             }
-
                         }
                     }
 
