@@ -402,8 +402,10 @@ public class Game {
 
 
 
-                    /////////////// ROTATE AND REVERSE //////////////////////
-                    if(e.getKeyCode()=='2' && !(pieceDepot.getPieces()[whichPieceIdx].isSelected())){
+                    /////////////// ROTATE  //////////////////////
+
+                    // Rotate to Right
+                    if(e.getKeyCode()=='3' && !(pieceDepot.getPieces()[whichPieceIdx].isSelected())){
                         pieceDepot.setPieces(rotate.rotateToRight(pieceDepot.getPieces()[whichPieceIdx]),whichPieceIdx);
                         if(whichPieceIdx>= 0 && whichPieceIdx <= 3){
                             flood1(31+((whichPieceIdx)*20),3);
@@ -422,12 +424,34 @@ public class Game {
                             writeMethods.avarageY(pieceDepot.getPieces()[whichPieceIdx],29+((whichPieceIdx-8)*15),42, 2);
                         }else if(whichPieceIdx >= 13 && whichPieceIdx <= 19){
                             writeMethods.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31+((whichPieceIdx-13)*10),44);
-                            writeMethods.avarageX(pieceDepot.getPieces()[whichPieceIdx],33+((whichPieceIdx-13)*10),45, 1);
-                            writeMethods.avarageY(pieceDepot.getPieces()[whichPieceIdx],33+((whichPieceIdx-13)*10),46, 1);
                         }
                     }
 
-                    if(e.getKeyCode()=='3' && pieceDepot.getPieces()[whichPieceIdx].isSelected() == false){
+                    // Rotate to left
+                    if(e.getKeyCode()=='4' && !(pieceDepot.getPieces()[whichPieceIdx].isSelected())){
+                        pieceDepot.setPieces(rotate.rotateToLeft(pieceDepot.getPieces()[whichPieceIdx]),whichPieceIdx);
+                        if(whichPieceIdx>= 0 && whichPieceIdx <= 3){
+                            flood1(31+((whichPieceIdx)*20),3);
+                            writeMethods.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31+(whichPieceIdx*20),3);
+                            writeMethods.avarageX(pieceDepot.getPieces()[whichPieceIdx],44+(whichPieceIdx*20),1, 3);
+                            writeMethods.avarageY(pieceDepot.getPieces()[whichPieceIdx],28+(whichPieceIdx*20),16, 3);
+                        }else if(whichPieceIdx >= 4 && whichPieceIdx <= 7){
+                            flood1(31+((whichPieceIdx-4)*20),18);
+                            writeMethods.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31+((whichPieceIdx-4)*20),18);
+                            writeMethods.avarageX(pieceDepot.getPieces()[whichPieceIdx],44+((whichPieceIdx-4)*20),16, 3);
+                            writeMethods.avarageY(pieceDepot.getPieces()[whichPieceIdx],28+((whichPieceIdx-4)*20),31, 3);
+                        }else if(whichPieceIdx >= 8 && whichPieceIdx <= 12){
+                            flood2(31+((whichPieceIdx-8)*15),33);
+                            writeMethods.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31+((whichPieceIdx-8)*15),33);
+                            writeMethods.avarageX(pieceDepot.getPieces()[whichPieceIdx],41+((whichPieceIdx-8)*15),31, 2);
+                            writeMethods.avarageY(pieceDepot.getPieces()[whichPieceIdx],29+((whichPieceIdx-8)*15),42, 2);
+                        }else if(whichPieceIdx >= 13 && whichPieceIdx <= 19){
+                            writeMethods.writeToScreen(pieceDepot.getPieces()[whichPieceIdx], 31+((whichPieceIdx-13)*10),44);
+                        }
+                    }
+
+                    /////////////// REVERSE  //////////////////////
+                    if(e.getKeyCode()=='5' && pieceDepot.getPieces()[whichPieceIdx].isSelected() == false){
                         pieceDepot.setPieces(reverse.takeTheReverse(pieceDepot.getPieces()[whichPieceIdx]), whichPieceIdx);
                         if(whichPieceIdx>= 0 && whichPieceIdx <= 3){
                             flood1(31+((whichPieceIdx)*20),3);
@@ -511,7 +535,7 @@ public class Game {
 
                     ///////////ERASING////////
                     Erasing erasing = new Erasing();
-                    if(e.getKeyCode() == '4'){
+                    if(e.getKeyCode() == '2'){
                         if(pieceDepot.getPieces()[whichPieceIdx].isSelected()){//Eğer daha önce seçilmişse bu işlemi yap
                             if(!(control == 2 && pieceDepot.getPieces()[whichPieceIdx].isPreIsSelected()))
                             {
@@ -519,6 +543,9 @@ public class Game {
 
                                 erasing.eraseSelectedPiece(cn, pieceDepot.getPieces()[whichPieceIdx], humanRobots[indexOfHumanRobot], pieceDepot.getPieces()[whichPieceIdx].getxIdxOnRobot(), pieceDepot.getPieces()[whichPieceIdx].getyIdxOnRobot(), pieceDepot.getPieces()[whichPieceIdx].getxCursorOnRobot(), pieceDepot.getPieces()[whichPieceIdx].getyCursorOnRobot());
                                 pieceDepot.getPieces()[whichPieceIdx].setSelected(false);
+                                if(control == 0){
+                                    pieceDepot.getPieces()[whichPieceIdx].setPreIsSelected(false);
+                                }
 
                                 //Robotun üzerindeki seçilen parçanın denk geldiği küplere silme işlemi yapıldığı için boşaldığını söylüyoruz.
                                 for (int i = 0; i < 3; i++) {
@@ -528,6 +555,12 @@ public class Game {
                                         }
                                     }
                                 }
+                                setCursor(pieceX, pieceY);
+                                write("###");
+                                setCursor(pieceX, pieceY+1);
+                                write("#");
+                                setCursor(pieceX, pieceY+2);
+                                write("###");
                             }
                         }
                     }

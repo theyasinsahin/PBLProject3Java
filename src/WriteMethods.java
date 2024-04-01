@@ -58,7 +58,8 @@ public class WriteMethods {
                     count++;
                     y += piece.getCubes()[l][k].getY_force() ;
                     setCursor(curX,curY);
-                    write(String.valueOf(y/count));
+                    write(String.valueOf(y/count+" "));
+
                 }
                 if (piece.getCubes()[l][k]==null){
                     temp++;
@@ -85,7 +86,8 @@ public class WriteMethods {
                     count++;
                     x += piece.getCubes()[k][l].getX_force() ;
                     setCursor(curX,curY);
-                    write(String.valueOf(x/count));
+                    write(String.valueOf(x/count+" "));
+
 
                 }
                 if (piece.getCubes()[k][l]==null){
@@ -170,8 +172,6 @@ public class WriteMethods {
             pieceDepot.getPieces()[i+13].setyCoordinate(43);
             write(String.valueOf(i+14));
             writeToScreen(pieceDepot.getPieces()[i+13], 31+(10*i),44);
-            avarageX(pieceDepot.getPieces()[i+13], 37+(10*i), 42, 1);
-            avarageY(pieceDepot.getPieces()[i+13], 29+(10*i), 49, 1);
         }
     }
 

@@ -13,7 +13,7 @@ public class Erasing {
         }
 
         /////Delete Inf Area
-        for (int i = 36; i < 46; i++) {
+        for (int i = 36; i < 42; i++) {
             for (int j = 0; j < 27; j++){
                 cn.getTextWindow().setCursorPosition(j,i);
                 cn.getTextWindow().output(" ");
